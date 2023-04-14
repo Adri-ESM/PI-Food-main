@@ -1,12 +1,33 @@
-const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
-module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('recipe', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+const Sequelize = require('sequelize');
+
+const Recipe = (sequelize) => {
+  const RecipeModel = sequelize.define('Recipe', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-  });
+    name: {
+      type: Sequelize.STRING,
+    },
+    image: {
+      type: Sequelize.STRING,
+    },
+    plateResume: {
+      type: Sequelize.STRING,
+    },
+    healthScore: {
+      type: Sequelize.INTEGER,
+    },
+    stepToStep: {
+      type: Sequelize.STRING,
+    },
+  },
+  {timestamps:false}
+  );
+
+  return RecipeModel;
 };
+
+module.exports = Recipe;
+
