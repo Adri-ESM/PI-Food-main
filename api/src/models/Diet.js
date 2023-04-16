@@ -1,20 +1,19 @@
-const Sequelize = require('sequelize');
+const { DataTypes } = require('sequelize');
 
-const Diet = (sequelize) => {
-  const DietModel = sequelize.define('Diet', {
+module.exports = (sequelize) => {
+  const Diet = sequelize.define('Diet', {
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     name: {
-      type: Sequelize.STRING,
-    },
-  },
-  {timestamps:false}
-  );
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  }, {
+    tableName: 'Diets' // specify the table name explicitly
+  });
 
-  return DietModel;
+  return Diet;
 };
-
-module.exports = Diet;

@@ -1,11 +1,15 @@
-const Sequelize = require('sequelize');
+const { DataTypes } = require('sequelize');
 
-const RecipeDiet = (sequelize) => {
-  const RecipeDietModel = sequelize.define('RecipeDiet', {},
-  {timestamps:false}
-  );
+module.exports = (sequelize) => {
+  const RecipeDiet = sequelize.define('RecipeDiet', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    }
+  }, {
+    tableName: 'RecipeDiets' // specify the table name explicitly
+  });
 
-  return RecipeDietModel;
+  return RecipeDiet;
 };
-
-module.exports = RecipeDiet;

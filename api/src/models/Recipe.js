@@ -1,33 +1,35 @@
-const Sequelize = require('sequelize');
+const { DataTypes } = require('sequelize');
 
-const Recipe = (sequelize) => {
-  const RecipeModel = sequelize.define('Recipe', {
+module.exports = (sequelize, DataTypes) => {
+  const Recipe = sequelize.define('Recipe', {
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
+      allowNull: false
     },
     image: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    plateResume: {
-      type: Sequelize.STRING,
+    plate_resume: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    healthScore: {
-      type: Sequelize.INTEGER,
+    health_score: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
-    stepToStep: {
-      type: Sequelize.STRING,
-    },
-  },
-  {timestamps:false}
-  );
+    step_to_step: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  }, {
+    tableName: 'Recipes' // specify the table name explicitly
+  });
 
-  return RecipeModel;
+  return Recipe;
 };
-
-module.exports = Recipe;
-
