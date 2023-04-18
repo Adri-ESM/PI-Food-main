@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    created: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   }, {
     tableName: 'Diets' // specify the table name explicitly
