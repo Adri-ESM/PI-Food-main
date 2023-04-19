@@ -1,7 +1,7 @@
 
 const recipeController = require('../controllers/recipesController.js');
 const Recipe = require('../models/Recipe');
-const Diets = require('../models/Diet');
+
 
 const getRecipeById = async (req, res) => {
     const { idRecipe } = req.params;
@@ -41,14 +41,14 @@ const getRecipeByName = async (req, res) => {
 
 
 const createRecipePostHandler = async (req, res) => {
-  const { name, image, plate_resume, health_score, step_to_step } = req.body;
+  const { name, image, plate_resume, health_score, step_to_step,diets } = req.body;
 
   try {
     // Call the createRecipePostHandler function from the controller
     await recipeController.createRecipePostHandler(req, res); // Update this line
 
     // Do something with the response, e.g., send a success response
-    res.status(200).send(`Recipe ${name} with ${image} ${plate_resume} ${health_score} ${step_to_step} created successfully`);
+    res.status(200).send(`Recipe ${name} with ${image} ${plate_resume} ${health_score} ${step_to_step} ${diets} created successfully`);
   } catch (error) {
     // Handle the error and send response to the client
     res.status(500).json({ error: error.message });

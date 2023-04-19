@@ -23,6 +23,8 @@ fs.readdirSync(modelsPath).forEach((file) => {
 // Define associations between models
 db.Recipe.belongsToMany(db.Diet, { through: db.RecipeDiet });
 db.Diet.belongsToMany(db.Recipe, { through: db.RecipeDiet });
+db.RecipeDiet.belongsTo(db.Recipe);
+db.RecipeDiet.belongsTo(db.Diet);
 
   // Define many-to-many relationship with Diet model
   // Recipe.belongsToMany(sequelize.models.Diet, { through: sequelize.models.RecipeDiet });

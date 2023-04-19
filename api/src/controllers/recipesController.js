@@ -5,26 +5,58 @@ const axios = require('axios');
 const API_KEY = process.env.API_KEY;
 //const infoCleaner = require('../utils/index.js');
 
-//------------CREATE POST RECIPES------------
+// //------------CREATE POST RECIPES------------
+// const createRecipePostHandler = async (req, res) => {
+//   const { name, image, plate_resume, health_score, step_to_step } = req.body;
+//   console.log(name, image, plate_resume, health_score, step_to_step);
+//   try {
+//     const newRecipe = await Recipe.create({
+//       name: name.toLowerCase(), //convertir a minúsculas
+//       image,
+//       plate_resume,
+//       health_score,
+//       step_to_step
+//     });
+//     console.log("RECIPE " + newRecipe);
+//     // Do something with newRecipe, e.g., send a response
+//     // Remove the response sending code from here
+//   } catch (error) {
+//     // Handle the error, e.g., send an error response
+//     res.status(500).json({ error: error.message + "Controller" });
+//   }
+// };
+
+
 const createRecipePostHandler = async (req, res) => {
-  const { name, image, plate_resume, health_score, step_to_step } = req.body;
-  console.log(name, image, plate_resume, health_score, step_to_step);
+  const { name, image, plate_resume, health_score, step_to_step, diets } = req.body;
+  console.log("createRecipePostHandler: "+name, image, plate_resume, health_score, step_to_step, diets);
   try {
     const newRecipe = await Recipe.create({
-      name: name.toLowerCase(), //convertir a minúsculas
+      name: name.toLowerCase(),
       image,
       plate_resume,
       health_score,
       step_to_step
     });
     console.log("RECIPE " + newRecipe);
-    // Do something with newRecipe, e.g., send a response
-    // Remove the response sending code from here
+
+    // Add diets to the recipe
+    
+    if (diets && diets.length > 0) {
+      const dietsToAdd = await Diet.findAll({
+        where: {
+          name: diets
+        }
+      });
+      console.log("DIETS: " + dietsToAdd);
+      await newRecipe.addDiets(dietsToAdd);
+    }
+
   } catch (error) {
-    // Handle the error, e.g., send an error response
-    res.status(500).json({ error: error.message + "Controller" });
+   console.log({ error: error.message + "Controller" });
   }
 };
+
 
 //------------GET RECIPES BY ID------------
 const getRecipeById = async (idRecipe, source) => {
@@ -77,41 +109,18 @@ const getRecipeByName = async (name) => {
       console.error(err);
   });
 
-   // Check if infoApi is an array
-  //  if (!Array.isArray(infoApi)) {
-  //   throw new Error("infoApi is not an array");
-  // }
-
-    // Convierte infoApi en un arreglo
-    //const infoApiArray = Array.from(infoApi);
-
-    //const recipesApi = infoCleaner(infoApi);
-
-    //const recipeFiltered = infoApi.filter((recipe) => recipe.name === name);
-
   const recipesDb = await Recipe.findAll({where: {name: name}});
   // return (infoApi+recipesDb);
   return {...infoApi, ...recipesDb};
 };
 
 
-//------------GET DIETS FROM API AND SAVE IN DB------------
-const getDietsFromApi = async () => {
-  const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey==${API_KEY}`);
-  return response.data;
-}
-
-const saveDiesToDb = async (diets) => {
-  await Diet.bulkCreate(diets);
-}
 
 module.exports = {
     createRecipePostHandler,
     getRecipeById,
     getAllRecipesName,
-    getRecipeByName,
-    getDietsFromApi,
-    saveDiesToDb
+    getRecipeByName
 };
 
 
