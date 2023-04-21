@@ -1,0 +1,14 @@
+/* @import "./styles/variables.scss"; */
+
+.homeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+.homeTitle{
+    margin-top: 75px;
+    margin-bottom: 50px;
+    font-size: 76px;
+    color: #0ccac4;
+    font-family: 'Bigelow Rules';
+}

@@ -1,0 +1,32 @@
+/* fonts-size */
+.small {
+  font-size: 0.75rem;
+}
+.medium {
+  font-size: 1rem;
+}
+.large {
+  font-size: 1.25rem;
+}
+.extralarge {
+  font-size: 1.5rem;
+}
+
+
+/* Google-fonts */
+body{
+    font-family: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&family=Play:wght@400;700&family=Roboto+Serif:wght@200;300;400;500;600;700;800;900&display=swap');
+    font-family: 'Roboto Serif', serif;
+    margin: 0;
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&family=Play:wght@400;700&family=Roboto+Serif:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&family=Play:wght@400;700&display=swap');
+ */
+
+/* Font-variables */
+/* $font-family: 'Roboto Serif', serif;
+$alternative: 'Play', sans-serif;
+$font-family2: 'Inter', sans-serif; */
+
+/* buttons */

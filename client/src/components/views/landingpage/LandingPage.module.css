@@ -1,0 +1,30 @@
+/* .landingContainer{
+   
+} */
+.landingImage {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.landingButton {
+    position: absolute;
+    bottom:2em;
+    right:20em;
+    background-color:#852387;
+    border-radius:1.5em;
+    color:white;
+    text-transform:uppercase;
+    padding:1em 1.5em;
+    font-size:1.5em;
+   
+}
+.landingButton:hover{
+    background-color:#137120;
+    color:white;
+    text-decoration:none;
+    cursor: pointer;
+}
+
+
+
