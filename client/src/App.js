@@ -1,21 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-//import LandingPage from './components/views/landingpage/LandingPage';
+import LandingPage from './components/views/landingpage/LandingPage';
 import Home from './components/views/home-page/Home';
+import Form from './components/views/form/Form';
 
 
 export default function App() {
   return (
+    <BrowserRouter>
       <div>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/home" component={Home} />
-          </Switch>
-        </BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/home" component={Home} />
+          <Route path="/form" component={Form} />
+        </Switch>
       </div>
-   
+    </BrowserRouter>
   );
 }
-
-

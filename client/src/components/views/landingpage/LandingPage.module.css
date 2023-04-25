@@ -8,23 +8,131 @@
     height: 100%;
 }
 .landingButton {
+    display: flex;
     position: absolute;
-    bottom:2em;
-    right:20em;
+    left: 35%;
+    width: 500px;
+    height: 100px;
     background-color:#852387;
     border-radius:1.5em;
     color:white;
     text-transform:uppercase;
-    padding:1em 1.5em;
     font-size:1.5em;
-   
+    cursor: pointer;
+    font-weight: 500;
+    transition: .3s ease;
+    align-items: center;
+    z-index: 2;
 }
+
+.landingButton span{
+    position: absolute;
+    transition: .4s ease-in-out all;
+    left: 20%;
+}
+.landingButton:hover span{
+    left: 20px;
+}
+/* .landingButton:hover icono{
+    left: calc(100% - 50px);
+    opacity: -1;
+} */
 .landingButton:hover{
     background-color:#137120;
     color:white;
     text-decoration:none;
-    cursor: pointer;
+   
 }
 
-
+/* RESPONSIVE */
+@media (max-width:300px){
+    .landingImage {
+        display: none
+    }
+    .landingButton {
+        width: 400px;
+        height: 70px;
+        padding:1em 1.5em;
+        font-size:1rem;
+        margin-left:30%;
+        margin-top: 50px;
+    }
+}
+@media (min-width:301px) and (max-width:400px){
+    .landingImage {
+        display: none
+    }
+    .landingButton {
+        width: 400px;
+        height: 80px;
+        padding:1em 1.5em;
+        font-size:1.2rem;
+        margin-left: 15%;
+        margin-top: 50px;
+    }
+}
+@media (min-width:401px) and (max-width:500px){
+    .landingImage {
+        display: none
+    }
+    .landingButton {
+        width: 500px;
+        height: 80px;
+        padding:1em 1.5em;
+        font-size:1.5rem;
+        margin-top: 50px;
+    }
+}
+@media (min-width:501px) and (max-width:700px){
+    .landingImage {
+        display: none
+    }
+    .landingButton {
+        width: 500px;
+        height: 80px;
+        padding:1em 1.5em;
+        font-size:1.5rem;
+    }
+}
+@media (min-width:701px) and (max-width:950px){
+    .landingImage {
+        display: none
+    }
+    .landingButton {
+        width: 300px;
+        height: 80px;
+        padding:1em 1.5em;
+        font-size:1rem;
+        margin-top: 70px;
+        font-weight: 700;
+        background-color: #146527;
+    }
+}
+@media (min-width:951px) and (max-width:1100px){
+    .foodResponsive {
+        display: none
+    }
+    .landingButton {
+        bottom:1.5em;
+        left: 28%;
+    }
+}
+@media (min-width:1101px) and (max-width:1200px){
+    .foodResponsive {
+        display: none
+    }
+    .landingButton {
+        bottom:1.5em;
+        left: 28%;
+    }
+}
+@media (min-width:1201px) and (max-width:2000px){
+    .foodResponsive {
+        display: none
+    }
+    .landingButton {
+        bottom:1.5em;
+        left: 28%;
+    }
+}
 

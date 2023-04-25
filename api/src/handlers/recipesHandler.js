@@ -21,19 +21,17 @@ const getRecipeById = async (req, res) => {
 };
 
 const getRecipeByName = async (req, res) => {
-  
-    const { name } = req.query;
-   
+    
+    const {name} = req.query;
+    console.log("getRecipeByName Handler: "+ name);
     try{
-        if(name){
-          console.log("Holaaaaaaa"+name);
+        // if(name){       
             const getRecipeByName = await recipeController.getRecipeByName(name);
-  
             res.status(200).json(getRecipeByName);
-        }else{
-            const response = await recipeController.getAllRecipesName()
-            res.status(200).json(response);
-        }
+        // }else{
+        //     const response = await recipeController.getAllRecipesName()
+        //     res.status(200).json(response);
+        // }
             } catch(error){
             res.status(401).json({error: error.message});
             }

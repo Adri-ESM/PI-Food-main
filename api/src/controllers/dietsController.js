@@ -16,7 +16,6 @@ const getAllDiets = async () => {
       dietsFromApi.data.results.forEach(recipe => {
         diets = recipe.diets.map((diet) => ({ name: diet }));
       });
-      console.log(typeof(diets) );
       await Diet.bulkCreate(diets);
       diets = await Diet.findAll();
     } catch (error) {
