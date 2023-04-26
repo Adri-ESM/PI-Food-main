@@ -101,6 +101,25 @@ input{
 textarea{
   font-size: 2rem;
 }
+.formModal{
+  width: 500px;
+  height: 200px;
+  background-color: #23828b;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  text-align: center;
+}
+.buttonModal{
+  width: 150px;
+  height: 50px;
+  background: #042e06;
+  color: #fff;
+  font-size: 1.2rem;
+}
 
 @media screen and (max-width: 768px) {
 .formContainer{

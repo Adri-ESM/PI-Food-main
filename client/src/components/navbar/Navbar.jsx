@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './NavbarStyles.module.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Logo from '../../images/adrisFoodLogo.png';
-import Image from '../../images/fruits-vegetables.jpg';
+
 
 export default function Navbar({ onSearch }) {
   const [recipeName, setRecipeName] = useState('');
@@ -14,6 +14,7 @@ export default function Navbar({ onSearch }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     onSearch(recipeName);
+    setRecipeName('');
   };
 
 
@@ -56,13 +57,8 @@ export default function Navbar({ onSearch }) {
       </div>
     </div>
     </div>
-    <div className={styles.navbarButtons}>
-    <div >
-          <button className={styles.buttonDB} type='submit'>Recipes from Api</button>
-        </div>
-        <div>
-          <button  className={styles.buttonApi} type='submit'>Recipes from DB</button>
-        </div>
+    <div id="filtersCards" >
+    
     </div>
     </div>
   );

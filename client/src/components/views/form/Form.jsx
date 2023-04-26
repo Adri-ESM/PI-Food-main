@@ -3,6 +3,7 @@ import styles from './FormStyles.module.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Image from '../../../images/fruits-vegetables.jpg';
 import { createRecipe } from '../../../redux/actions.js';
+import ReactModal from 'react-modal';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -10,11 +11,12 @@ export default function Form() {
   const [health_score, setHealthScore] = useState('');
   const [step_to_step, setSteps] = useState('');
   const [image, setImage] = useState('');
-  const [selectedDiets, setSelectedDiets] = useState([]);
-  const [selectedDiet, setSelectedDiet] = useState('');
+  // const [selectedDiets, setSelectedDiets] = useState([]);
+  const [diets, setSelectedDiet] = useState('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  // /const diets = ['gluten free', 'vegetarian', 'vegan'];
+
 
   const resetForm = () => {
     setName('');
@@ -22,9 +24,13 @@ export default function Form() {
     setHealthScore('');
     setSteps('');
     setImage('');
-    setSelectedDiets([]);
+    // setSelectedDiets([]);
     setSelectedDiet('');
   };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,10 +40,11 @@ export default function Form() {
       health_score,
       step_to_step,
       image,
-      selectedDiet,
-      selectedDiets
+      diets,
+      // selectedDiets
     };
 
+    setShowModal(true);
     // Validar los campos del formulario
     const formErrors = {};
 
@@ -93,21 +100,6 @@ export default function Form() {
     setSelectedDiet(event.target.value);
   };
 
-  // const handleDietChange = (event) => {
-  //   const options = event.target.options;
-  //   const selectedValues = [""];
-  
-    // for (let i = 0; i < options.length; i++) {
-    //   if (options[i].selected) {
-    //     selectedValues.push(options[i].value);
-    //   }
-
-      // setSelectedDiets(selectedValues);
-    // };
-  
-    
-  // };
-
 
   return (
     <div>
@@ -130,7 +122,7 @@ export default function Form() {
       <br />
       <label className={styles.formHealth}>
         Health Score
-        <input type="number" min="0" max="900" value={health_score} onChange={handleHealthScoreChange} />
+        <input type="number" min="0" max="999" value={health_score} onChange={handleHealthScoreChange} />
       </label>
       <br />
       <label className={styles.formStep}>
@@ -151,6 +143,7 @@ export default function Form() {
             <option value="gluten free">gluten free</option>
             <option value="vegan">vegan</option>
             <option value="whole 30">whole 30</option>
+            <option value="vegetarian">vegetarian</option>
             <option value="lacto ovo vegetarian">lacto ovo vegetarian</option>
             <option value="paleolithic">paleolithic</option>
           </select>
@@ -162,6 +155,13 @@ export default function Form() {
     <div className={styles.formLinkHome}>
         <Link to='/home'>Home</Link>
       </div>
+
+      <ReactModal  isOpen={showModal} onRequestClose={handleModalClose}>
+        <div className={styles.formModal}>
+          <h2>Recipe Created!</h2>
+          <button onClick={handleModalClose} className={styles.buttonModal}>Close</button>
+        </div>
+      </ReactModal>
     </div>
   );
 }
@@ -175,3 +175,18 @@ export default function Form() {
 // setName(e.target.value);
 // setErrors({ ...errors, name: '' }); // limpia el mensaje de error previo
 // };
+
+// const [showModal, setShowModal] = useState(false);
+
+// <ReactModal isOpen={showModal} onRequestClose={() => setShowModal(false)}>
+//   <h2>Recipe Created!</h2>
+//   <button onClick={() => setShowModal(false)}>Close</button>
+// </ReactModal>
+
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   // código para crear la receta
+//   setShowModal(true);
+// };
+
+// incluyeme ese codigo en este por favor

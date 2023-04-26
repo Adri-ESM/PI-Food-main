@@ -3,21 +3,37 @@ const recipeController = require('../controllers/recipesController.js');
 const Recipe = require('../models/Recipe');
 
 
+const getAllRecipes = async (req, res) => {
+  console.log("getAllRecipes Handler: ");
+  try{    
+    const getAllRecipes = await recipeController.getAllRecipes();
+    res.status(200).json(getAllRecipes);
+  } catch(error){
+    res.status(401).json({error: error.message});
+  }
+};
+
 const getRecipeById = async (req, res) => {
     const { idRecipe } = req.params;
-    // res.status(200).send("Esto es el recipe "+ idRecipe);
-    console.log("Holaaaaaaa BY ID");
     const source = isNaN(idRecipe) ? "bdd" : "api";
-
-  
     try {
       const response = await recipeController.getRecipeById(idRecipe, source);
 
       res.status(200).json(response);
     } catch {
-      // /res.status(404).json({ error: error.message });
       res.status(404).json({ error: "Recipe not found" });
     }
+};
+
+const getFilterRecipeByDiet = async (req, res) => {
+  // console.log("getFilterRecipeByDiet Handler: ");
+  const { diet } = req.query;
+  try {
+    const response = await recipeController.getFilterRecipeByDiet(diet);
+    res.status(200).json(response);
+  } catch {
+    res.status(404).json({ error: "Recipe not found" });
+  }
 };
 
 const getRecipeByName = async (req, res) => {
@@ -58,5 +74,7 @@ const createRecipePostHandler = async (req, res) => {
 module.exports = {
     getRecipeById,
     getRecipeByName,
-    createRecipePostHandler
+    createRecipePostHandler,
+    getAllRecipes,
+    getFilterRecipeByDiet,
 };

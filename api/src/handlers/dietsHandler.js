@@ -1,9 +1,9 @@
-const recipeController = require('../controllers/dietsController.js');
+const dietsController = require('../controllers/dietsController.js');
 const Diet = require('../models/Diet');
 
 const getAllDietsHandler = async (req, res) => {
   try {
-    const diets = await recipeController.getAllDiets(); // Obtiene todas las dietas desde la base de datos
+    const diets = await dietsController.getAllDiets(); // Obtiene todas las dietas desde la base de datos
     res.status(200).json(diets); // Envía las dietas como respuesta al cliente en formato JSON
   } catch (error) {
     console.error(error);

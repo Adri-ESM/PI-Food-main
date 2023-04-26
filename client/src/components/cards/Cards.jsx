@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { getRecipesByName } from '../../redux/actions.js';
+import { getRecipesByName, getAllRecipes, filterRecipesByDiet } from '../../redux/actions.js';
 import styles from './CardsStyles.module.css';
 
 
-const PaginationCards = ({ recipeName, cardsPerPage }) => {
-  // const [data, setData] = useState([]);
-  // console.log(recipe.recipeName);
-  // useEffect(() => {
-  //   getRecipesByName(recipe.recipeName).then(response => {
-  //       setData(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }, []);
 
+const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (recipeName) {
+
+    if (recipeName !== '') {
+ 
       getRecipesByName(recipeName).then((response) => {
         setData(response.data);
       });
     }
-  }, [recipeName]);
+    if (filterOption !== '' ){
+
+      filterRecipesByDiet(filterOption).then((response) => {
+        setData(response.data);
+      });
+    } 
+    if (filterOption === '' && recipeName === ''){
+      getAllRecipes().then((response) => {
+        setData(response.data);
+      });
+    }
+  }, [recipeName,filterOption]);
 
   const itemsPerPage = cardsPerPage;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / itemsPerPage);
-  console.log(totalPages);
   const handleClick = (e, index) => {
     e.preventDefault();
     setCurrentPage(index);
@@ -38,6 +40,7 @@ const PaginationCards = ({ recipeName, cardsPerPage }) => {
     //const startIndex = (currentPage - 1) * itemsPerPage;
     //const endIndex = startIndex + itemsPerPage;
     if (Array.isArray(data)) {
+      
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       //const pageData = data.slice(startIndex, endIndex);
@@ -47,6 +50,10 @@ const PaginationCards = ({ recipeName, cardsPerPage }) => {
             <img src={card.image} alt={card.name} className={styles.cardImage}/>
             <h2 className={styles.cardName}>{card.name}</h2>
             <p className={styles.cardResume}><b>Resume:</b> {card.plate_resume}</p>
+            <p className={styles.cardResume}>
+              <b>Diets:</b>{" "}
+              {card.diets && card.diets.map((diet) => diet.name)}
+            </p>
           </div>
         );
       });
@@ -70,8 +77,37 @@ const PaginationCards = ({ recipeName, cardsPerPage }) => {
         </li>
       );
     }
+
+    // Agregar flecha hacia la izquierda si no estamos en la primera página
+    if (currentPage > 1) {
+      pages.unshift(
+        <li key="back">
+          <button
+            href="#"
+            onClick={(e) => handleClick(e, currentPage - 1)}
+          >
+            &lt;
+          </button>
+        </li>
+      );
+    }
+
+    // Agregar flecha hacia la derecha si no estamos en la última página
+    if (currentPage < totalPages) {
+      pages.push(
+        <li key="next">
+          <button
+            href="#"
+            onClick={(e) => handleClick(e, currentPage + 1)}
+          >
+            &gt;
+          </button>
+        </li>
+      );
+    }
+
     return pages;
-  };
+};
 
   return (
     <div>
@@ -82,201 +118,3 @@ const PaginationCards = ({ recipeName, cardsPerPage }) => {
 };
 
 export default PaginationCards;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-// import styles from './CardsStyles.module.css';
-// import Card from '../card/Card';
-// import { useEffect } from 'react';
-// import { useState } from 'react';
-// import { ArrowBack, ArrowForward } from '@material-ui/icons';
-// import { getRecipesByName } from '../../redux/actions.js';
-
-// export default function Cards() {
-//   console.log("IN THE CARDS")
-//   const [currentPage, setCurrentPage] = useState(0);
-//   const [recipes, setRecipes] = useState([]);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const result = await getRecipesByName();
-//       console.log("RESULT: "+result)
-//       console.log(result.payload)
-//       setRecipes(result.payload);
-//     };
-//     fetchData();
-//   }, []);
-
-// //   //Obtiene el array correspondiente a la página actual
-// //   const cardsToDisplay = recipes && recipes.slice(currentPage * 10, currentPage * 10 + 10);
-
-// //   const maxPages = 10;
-
-// // //Función para ir a la página siguiente
-// //   const handleNextPage = () => {
-// //     if (currentPage !== 9) {
-// //       setCurrentPage(currentPage + 1);
-// //     }
-// //   };
-
-// //   //Función para ir a la página anterior
-// //   const handlePreviousPage = () => {
-// //     if (currentPage !== 0) {
-// //       setCurrentPage(currentPage - 1);
-// //     }
-// //   };
-
-//   return ( <h1>Hola Card</h1>
-//   //   <div className={styles.cardsList}>
-//   //     {/* Renderiza las primeras 9 tarjetas */}
-//   //     {cardsToDisplay && cardsToDisplay.map((card) => (
-//   //       <Card
-//   //         key={card.id}
-//   //         image={card.image}
-//   //         name={card.name}
-//   //         typeDiets={card.typeDiets}
-//   //       />
-//   //     ))}
-
-
-
-//   // <div className={styles.pagination}>
-//   //   <button onClick={handlePreviousPage} disabled={currentPage === 0}>
-//   //     <ArrowBack />
-//   //   </button>
-//   //   {Array.from({ length: maxPages }).map((_, index) => (
-//   //     <button
-//   //       key={index}
-//   //       className={`${styles.pageNumberButton} ${
-//   //         currentPage === index ? styles.active : ""
-//   //       }`}
-//   //       onClick={() => setCurrentPage(index)}
-//   //     >
-//   //       {index + 1}
-//   //     </button>
-//   //   ))}
-//   //   <button
-//   //     onClick={handleNextPage}
-//   //     disabled={
-//   //       currentPage === Math.ceil(recipes.length / 10) - 1
-//   //     }
-//   //   >
-//   //     <ArrowForward />
-//   //   </button>
-//   // </div>
-
-//   //   </div>
-//   );
-// }
-
-
-// //ESTE CODIGO FUNCIONA PARA LA API, LA QUE NO FUNCIONA ES LA API
-// // import React from 'react';
-// // import styles from './CardsStyles.module.css';
-// // import Card from '../card/Card';
-// // import { useEffect } from 'react';
-// // import { useState } from 'react';
-// // import { ArrowBack, ArrowForward } from '@material-ui/icons';
-// // import { getRecipesByName } from '../../redux/actions.js';
-
-// // export default function Cards() {
-  
-// //   const [currentPage, setCurrentPage] = useState(0);
-// //   const [recipes, setRecipes] = useState([]);
-
-// //   useEffect(() => {
-// //     const fetchData = async () => {
-// //       const result = await getRecipesByName();
-// //       if (result && result.payload && result.payload.results) {
-// //         setRecipes(result.payload.results);
-// //       }
-// //     };
-// //     fetchData();
-// //   }, []);
-
-// //   //Obtiene el array correspondiente a la página actual
-// //   const cardsToDisplay = recipes && recipes.slice(currentPage * 10, currentPage * 10 + 10);
-
-// //   const maxPages = 10;
-
-// // //Función para ir a la página siguiente
-// //   const handleNextPage = () => {
-// //     if (currentPage !== 9) {
-// //       setCurrentPage(currentPage + 1);
-// //     }
-// //   };
-
-// //   //Función para ir a la página anterior
-// //   const handlePreviousPage = () => {
-// //     if (currentPage !== 0) {
-// //       setCurrentPage(currentPage - 1);
-// //     }
-// //   };
-
-// //   return (
-// //     <div className={styles.cardsList}>
-// //       {/* Renderiza las primeras 9 tarjetas */}
-// //       {cardsToDisplay && cardsToDisplay.map((card) => (
-// //         <Card
-// //           key={card.id}
-// //           image={card.image}
-// //           name={card.name}
-// //           typeDiets={card.typeDiets}
-// //         />
-// //       ))}
-
-
-
-// //   <div className={styles.pagination}>
-// //     <button onClick={handlePreviousPage} disabled={currentPage === 0}>
-// //       <ArrowBack />
-// //     </button>
-// //     {Array.from({ length: maxPages }).map((_, index) => (
-// //       <button
-// //         key={index}
-// //         className={`${styles.pageNumberButton} ${
-// //           currentPage === index ? styles.active : ""
-// //         }`}
-// //         onClick={() => setCurrentPage(index)}
-// //       >
-// //         {index + 1}
-// //       </button>
-// //     ))}
-// //     <button
-// //       onClick={handleNextPage}
-// //       disabled={
-// //         currentPage === Math.ceil(recipes.length / 10) - 1
-// //       }
-// //     >
-// //       <ArrowForward />
-// //     </button>
-// //   </div>
-
-// //     </div>
-// //   );
-// // }

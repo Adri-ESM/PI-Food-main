@@ -25,12 +25,26 @@ const getAllDiets = async () => {
   return diets;
 }
 
+const createDiet = async (name) => {
+
+  try {
+    const newDiet = await Diet.create({
+      name: name,
+      created: true
+    });
+    return newDiet;
+  } catch (error) {
+    return null;
+  }
+};
+
 const saveDiesToDb = async (diets) => {
   await Diet.bulkCreate(diets);
 }
 
 module.exports = {
-  getAllDiets
+  getAllDiets,
+  createDiet
 };
 
 
