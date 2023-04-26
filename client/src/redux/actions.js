@@ -1,6 +1,6 @@
 import axios from "axios";
 export const GET_RECIPES_BY_NAME = "GET_RECIPES_BY_NAME";
-
+const API_URL = process.env.API_URL;
 
 export function getAllRecipes() {
 
