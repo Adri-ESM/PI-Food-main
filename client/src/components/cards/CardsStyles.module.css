@@ -67,7 +67,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 4rem;
   }
   
   .paginationCards button {
@@ -79,7 +79,11 @@
     color: #fff;
     cursor: pointer;
   }
-  
+  .paginationCards button.active:hover {
+    background-color: #bfde44;
+    color: #2d4059;
+    font-weight: bold;
+  }
   .paginationCards button:disabled {
     opacity: 0.5;
     cursor: default;
@@ -88,7 +92,39 @@
     background-color: #bfde44;
     color: #2d4059;
   }
- 
   .paginationCards li{
     list-style: none;
   }
+  .paginationCards button.active {
+    background-color: yellow;
+  }
+
+  /*---------------------------------------------*
+  /* ORGANIZAR ASCENDENTE Y DESCENDENTE */
+  .sortButtonsContainer{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 165px;
+}
+.sortAscButton, .sortDescButton{
+  background-color: #F2F2F2;
+  width: 150px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 5px #ccc;  
+  margin-left: 10px;
+  color: #000000;
+  transition: all 0.3s ease-in-out;
+}
+.sortAscButton:hover, .sortDescButton:hover {
+  background-color: rgb(8, 91, 80);
+  color: #fff;
+}

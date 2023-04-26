@@ -6,6 +6,7 @@ import styles from './CardsStyles.module.css';
 
 const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
   const [data, setData] = useState([]);
+  const [sortOrder, setSortOrder] = useState('asc');
 
   useEffect(() => {
 
@@ -36,6 +37,16 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
     setCurrentPage(index);
   };
 
+  const handleSortAsc = () => {
+    setSortOrder('asc');
+    setData([...data].sort((a, b) => a.name.localeCompare(b.name)));
+  };
+  
+  const handleSortDesc = () => {
+    setSortOrder('desc');
+    setData([...data].sort((a, b) => b.name.localeCompare(a.name)));
+  };
+
   const renderCards = () => {
     //const startIndex = (currentPage - 1) * itemsPerPage;
     //const endIndex = startIndex + itemsPerPage;
@@ -44,6 +55,12 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       //const pageData = data.slice(startIndex, endIndex);
+      const sortedData = [...data];
+      if (sortOrder === 'asc') {
+        sortedData.sort((a, b) => a.name.localeCompare(b.name));
+        } else {
+        sortedData.sort((a, b) => b.name.localeCompare(a.name));
+        }
       return data.slice(startIndex, endIndex).map((card) => {
         return (
           <div className={styles.cardsContainer} key={card.id}>
@@ -77,6 +94,7 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
         </li>
       );
     }
+   
 
     // Agregar flecha hacia la izquierda si no estamos en la primera página
     if (currentPage > 1) {
@@ -111,10 +129,18 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
 
   return (
     <div>
+       <div className={styles.sortButtonsContainer}>
+        <button className={styles.sortAscButton} onClick={handleSortAsc}>A - Z</button>
+        <button className={styles.sortDescButton} onClick={handleSortDesc}>Z - A</button>
+      </div>
       <div className={styles.cardsPerPage}>{renderCards()}</div>
       <ul className={styles.paginationCards}>{renderPagination()}</ul>
+     
+      
     </div>
   );
 };
 
 export default PaginationCards;
+
+

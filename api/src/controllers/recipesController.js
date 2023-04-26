@@ -57,6 +57,17 @@ const getRecipeById = async (idRecipe, source) => {
   return recipe;
 }
 
+// let recipe;
+// if (source === "api") {
+//   await fetch(query)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       recipe = data;
+//     });
+// } else {
+//   recipe = await Recipe.findByPk(idRecipe.toLowerCase());
+// }
+// return recipe;
 
 
 

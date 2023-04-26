@@ -79,16 +79,32 @@ export default function Form() {
     setName(event.target.value);
   };
 
+  // const handlePlateResumeChange = (event) => {
+  //   setPlateResume(event.target.value);
+  // };
   const handlePlateResumeChange = (event) => {
-    setPlateResume(event.target.value);
+    const value = event.target.value;
+      if (value.length <= 255) {
+        setPlateResume(value);
+      } else {
+        alert('Resume must be less than or equal to 255 characters');
+      }
   };
 
   const handleHealthScoreChange = (event) => {
     setHealthScore(event.target.value);
   };
 
+  // const handleStepsChange = (event) => {
+  //   setSteps(event.target.value);
+  // };
   const handleStepsChange = (event) => {
-    setSteps(event.target.value);
+    const value = event.target.value;
+      if (value.length <= 255) {
+        setSteps(value);
+      } else {
+        alert('Step to step must be less than or equal to 255 characters');
+      }
   };
 
   const handleImageChange = (event) => {
@@ -122,7 +138,7 @@ export default function Form() {
       <br />
       <label className={styles.formHealth}>
         Health Score
-        <input type="number" min="0" max="999" value={health_score} onChange={handleHealthScoreChange} />
+        <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} />
       </label>
       <br />
       <label className={styles.formStep}>
@@ -167,26 +183,4 @@ export default function Form() {
 }
 
   
-// setErrors({}); // si no hay errores, limpia los errores previos
-// return newRecipe;
-// };
 
-// const handleNameChange = (e) => {
-// setName(e.target.value);
-// setErrors({ ...errors, name: '' }); // limpia el mensaje de error previo
-// };
-
-// const [showModal, setShowModal] = useState(false);
-
-// <ReactModal isOpen={showModal} onRequestClose={() => setShowModal(false)}>
-//   <h2>Recipe Created!</h2>
-//   <button onClick={() => setShowModal(false)}>Close</button>
-// </ReactModal>
-
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-//   // código para crear la receta
-//   setShowModal(true);
-// };
-
-// incluyeme ese codigo en este por favor
