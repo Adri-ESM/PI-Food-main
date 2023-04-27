@@ -22,7 +22,7 @@ export default function Filter({ onFilter, onHealthScore }) {
     <div className={styles.filterDietsHealth}>
       <div className={styles.filterContainer}>
         <label>
-          <span>Filter by Diets:</span>
+          <span>Types of Diets:</span>
           <select value={selectedOption} onChange={handleOptionChange}>
             <option value=""></option>
             <option value="dairy free">dairy free</option>
@@ -38,12 +38,12 @@ export default function Filter({ onFilter, onHealthScore }) {
       </div>
       <div className={styles.filterHealthContainer}>
         <label>
-          <span>Filter by HealthScore:</span>
+          <span>Health Score:</span>
           <select value={filterHealthScore} onChange={handlefilterHealthScoreClick}>
             <option value=""></option>
           </select>
         </label>
-      <button className={styles.filterButton} onClick={handlefilterHealthScoreClick}>Health Score</button>
+      <button className={styles.filterButton} onClick={handlefilterHealthScoreClick}>Filter</button>
       </div>
     </div>
   );
