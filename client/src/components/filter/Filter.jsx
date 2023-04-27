@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import styles from './FilterStyles.module.css';
 
-export default function Filter({ onFilter }) {
+export default function Filter({ onFilter, onHealthScore }) {
   const [selectedOption, setSelectedOption] = useState('');
+  const [filterHealthScore, setfilterHealthScore] = useState('');
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
-
+  
   const handleFilterClick = () => {
     onFilter(selectedOption);
     setSelectedOption('');
   }
-
+  
+  const handlefilterHealthScoreClick = () => {
+    onHealthScore(filterHealthScore);
+    setfilterHealthScore('');
+  }
   return (
-    <div>
+    <div className={styles.filterDietsHealth}>
       <div className={styles.filterContainer}>
         <label>
           <span>Filter by Diets:</span>
@@ -30,6 +35,15 @@ export default function Filter({ onFilter }) {
           </select>
         </label>
       <button className={styles.filterButton} onClick={handleFilterClick}>Filter</button>
+      </div>
+      <div className={styles.filterHealthContainer}>
+        <label>
+          <span>Filter by HealthScore:</span>
+          <select value={filterHealthScore} onChange={handlefilterHealthScoreClick}>
+            <option value=""></option>
+          </select>
+        </label>
+      <button className={styles.filterButton} onClick={handlefilterHealthScoreClick}>Health Score</button>
       </div>
     </div>
   );

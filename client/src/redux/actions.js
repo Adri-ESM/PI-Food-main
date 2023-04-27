@@ -17,7 +17,7 @@ export function getRecipesByName(recipeName) {
   return  response;
 }
 
-
+//PROMESAS
 export const createRecipe = async (recipeData) => {
   try {
     const response = await axios.post('https://api-pi-food-main.onrender.com/recipes', recipeData);
@@ -26,6 +26,20 @@ export const createRecipe = async (recipeData) => {
     throw new Error(error.message);
   }
 };
+
+// export const createRecipe = (recipeData) => {
+//   return new Promise((resolve, reject) => {
+//     axios.post('https://api-pi-food-main.onrender.com/recipes', recipeData)
+//       .then(response => {
+//         resolve(response.data);
+//       })
+//       .catch(error => {
+//         reject(new Error(error.message));
+//       });
+//   });
+// };
+
+
 
 export const filterRecipesByDiet = (filterOption) => {
   let url = `https://api-pi-food-main.onrender.com/recipes/diet?diet=${filterOption}`;

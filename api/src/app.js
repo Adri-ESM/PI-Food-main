@@ -35,3 +35,7 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 module.exports = server;
+
+// Express.js: El framework de Node.js para aplicaciones web por defecto para construir aplicaciones web
+
+// Node.js: El motor de JavaScript utilizado para aplicaciones escalables del lado del servidor y de la red.

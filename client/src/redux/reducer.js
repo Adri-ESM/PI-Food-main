@@ -1,6 +1,4 @@
 
-
-
 let initialState = {
     allRecipes: [],
 }
@@ -18,3 +16,6 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer;
+
+// La propiedad payload generalmente se usa para contener los datos o 
+// información relevantes que se están enviando desde la acción al reductor.

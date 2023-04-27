@@ -1,8 +1,6 @@
 const { Router } = require("express");
 
-//const { Recipe, Diet } = require("../db");
-//const axios = require("axios");
-//const { API_KEY } = process.env;
+//maneja todas las solicitudes
 const recipesRouter = require("./recipesRouter.js");
 const dietsRouter = require("./dietsRouter.js");
 

@@ -20,7 +20,3 @@ export default function LandingPage() {
     </div>
   )
 }
-//
-//import { NavLink } from 'react-router-dom';
-//      
-/* <Link to="/" className={styles.landingButton}>Welcome to Adri's Food</Link>  */

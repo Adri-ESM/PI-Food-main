@@ -92,9 +92,9 @@
 .navbarButtons{
     justify-content: space-evenly;
 }
-.searchBox{
+/* .searchBox{
     display: none;
-}
+} */
 }
 @media screen and (max-width: 500px) {
     .navbarContainer{
@@ -104,9 +104,9 @@
     .navbarLinks{
         font-size: 1.5rem;
     }
-    .searchBox{
+    /* .searchBox{
         display: none;
-    }
+    } */
     .logo{
         width: 150px;
         height: 150px;

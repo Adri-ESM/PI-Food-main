@@ -17,3 +17,9 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+// Provider. Cada objeto Context viene con un componente Provider de React que 
+// permite que los componentes que lo consumen se suscriban a los cambios del contexto. 
+// El componente Provider acepta una prop value que se pasará a los componentes 
+// consumidores que son descendientes de este Provider .

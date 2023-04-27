@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getRecipesByName, getAllRecipes, filterRecipesByDiet } from '../../redux/actions.js';
 import styles from './CardsStyles.module.css';
+import { Link } from "react-router-dom";
 
 
 
@@ -63,21 +64,25 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
         }
       return data.slice(startIndex, endIndex).map((card) => {
         return (
-          <div className={styles.cardsContainer} key={card.id}>
-            <img src={card.image} alt={card.name} className={styles.cardImage}/>
-            <h2 className={styles.cardName}>{card.name}</h2>
-            <p className={styles.cardResume}><b>Resume:</b> {card.plate_resume}</p>
-            <p className={styles.cardResume}>
-              <b>Diets:</b>{" "}
-              {card.diets && card.diets.map((diet) => diet.name)}
-            </p>
-          </div>
-        );
-      });
-    } else {
-      // Handle the case where data is not an array
-    }
-  };
+          <div className={styles.cardsContainer}>
+            <Link to={`/detail/${card.id}`} key={card.id}></Link>
+            <div>
+              <img src={card.image} alt={card.name} className={styles.cardImage}/>
+              <h2 className={styles.cardName}>{card.name}</h2>
+              <p className={styles.cardResume}><b>Resume:</b> {card.plate_resume}</p>
+              <p className={styles.cardResume}>
+                <b>Diets:</b>{" "}
+                {card.diets && card.diets.map((diet) => diet.name)}
+              </p>
+            </div>
+        </div>
+      );
+    });
+  } else {
+    // Handle the case where data is not an array
+  }
+};
+ 
 
   const renderPagination = () => {
     const pages = [];
@@ -136,6 +141,9 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
       <div className={styles.cardsPerPage}>{renderCards()}</div>
       <ul className={styles.paginationCards}>{renderPagination()}</ul>
      
+      {/* <Link to={`/detail/${recipeName}`}>
+         <p className="card-see-btn">Ver detalle</p>
+      </Link> */}
       
     </div>
   );

@@ -40,18 +40,28 @@ const getRecipeByName = async (req, res) => {
     
     const {name} = req.query;
     console.log("getRecipeByName Handler: "+ name);
-    try{
-        // if(name){       
+      try{      
             const getRecipeByName = await recipeController.getRecipeByName(name);
             res.status(200).json(getRecipeByName);
-        // }else{
-        //     const response = await recipeController.getAllRecipesName()
-        //     res.status(200).json(response);
-        // }
             } catch(error){
             res.status(401).json({error: error.message});
-            }
+          }
 };
+
+
+// const getRecipeByName = (req, res) => {
+
+//   const {name} = req.query;
+//   console.log("getRecipeByName Handler: "+ name);
+//   recipeController.getRecipeByName(name)
+//       .then(getRecipeByName => {
+//           res.status(200).json(getRecipeByName);
+//       })
+//       .catch(error => {
+//           res.status(401).json({error: error.message});
+//       });
+// };
+
 
 
 const createRecipePostHandler = async (req, res) => {

@@ -57,17 +57,26 @@ const getRecipeById = async (idRecipe, source) => {
   return recipe;
 }
 
-// let recipe;
-// if (source === "api") {
-//   await fetch(query)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       recipe = data;
-//     });
-// } else {
-//   recipe = await Recipe.findByPk(idRecipe.toLowerCase());
-// }
-// return recipe;
+// const getRecipeById = async (idRecipe, source) => {
+//   const query = `https://api.spoonacular.com/recipes/complexSearch?id=${idRecipe}&apiKey=${API_KEY}`;
+//   console.log("entro a getRecipeById ");
+
+//   let recipe;
+//   if (source === "api") {
+//     await fetch(query)
+//       .then((response) => response.json())
+//       .then((data) => {
+//         recipe = data;
+//       })
+//       .catch((error) => {
+//         console.log(`Error fetching recipe with id ${idRecipe}: ${error}`);
+//         return null;
+//       });
+//   }
+//   return recipe;
+// };
+  
+
 
 
 
@@ -108,7 +117,7 @@ const getRecipeByName = async (name) => {
     throw error;
   }
   try{
-    if(recipesDb.length < 5){
+    if(recipesDb.length < 100){
       console.log("falta gente");
       const query = `https://api.spoonacular.com/recipes/complexSearch?query=${name}&apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
       infoApi = (await axios.get(query));
@@ -147,7 +156,7 @@ const getAllRecipes = async () => {
   let recipesDb = [];
   let recipes;
   let newRecipe ;
-  console.log("entro a getAllRecipes Controller")
+  //console.log("entro a getAllRecipes Controller")
   try {
     recipes = await Recipe.findAll({
       include: {

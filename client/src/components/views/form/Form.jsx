@@ -15,7 +15,7 @@ export default function Form() {
   const [diets, setSelectedDiet] = useState('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
+  const [names, setNames] = useState([]);
 
 
   const resetForm = () => {
@@ -48,10 +48,16 @@ export default function Form() {
     // Validar los campos del formulario
     const formErrors = {};
 
-    if (!/^[a-zA-Z]+$/.test(name)) {
-      formErrors.name = 'The name only can contain letters';
-      //alert('The name only can contain letters');
+    if (names.includes(name)) {
+      alert('This name has already been used');
+    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+      alert('The name can only contain letters and spaces');
+    } else {
+      names.push(name);
+      setNames(names);
     }
+
+  
 
     if (!/^[0-9]+$/.test(health_score)) {
       formErrors.health_score = 'The health score only can contain numbers';
@@ -162,6 +168,7 @@ export default function Form() {
             <option value="vegetarian">vegetarian</option>
             <option value="lacto ovo vegetarian">lacto ovo vegetarian</option>
             <option value="paleolithic">paleolithic</option>
+        
           </select>
       </label>
       <br />

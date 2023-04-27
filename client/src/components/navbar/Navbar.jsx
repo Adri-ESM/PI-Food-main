@@ -21,7 +21,7 @@ export default function Navbar({ onSearch }) {
   return (
     <div>
     <div className={styles.navbarContainer}>
-    <a href='/'>
+    <a href='/home'>
     <img src={Logo} alt='logo' className={styles.logo}></img>
     </a>
     <div className={styles.searchBox}>
@@ -47,7 +47,8 @@ export default function Navbar({ onSearch }) {
     </div>
     <div className={styles.navbarLinks}>
       <div className={styles.navbarHome}>
-        <Link to='/home'>Home</Link>
+        <a href='/home'>Home</a>
+        {/* <Link to='/home'>Home</Link> */}
       </div>
       <div className={styles.navbarCreate}>
         <Link to='/form'>Create Recipe</Link>
