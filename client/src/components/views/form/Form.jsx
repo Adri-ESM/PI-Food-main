@@ -36,7 +36,7 @@ export default function Form() {
     setShowModal(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newRecipe = {
@@ -75,9 +75,15 @@ export default function Form() {
     localStorage.setItem('recipes', JSON.stringify(recipeData));
 
     try {
-      const response = createRecipe(newRecipe);
+      const response = await createRecipe(newRecipe);
       console.log(response);
-      setShowSuccessMessage(true); // Muestra mensaje de éxito de envío de formulario.
+      if(response !== "The recipe exists"){
+        setShowSuccessMessage(true); // Muestra mensaje de éxito de envío de formulario.
+      }else {
+        console.log("RESPUESTA: "+response);
+        setShowSuccessMessage(false);
+      }
+      
       resetForm();
     } catch (error) {
       console.error(error);
@@ -117,14 +123,9 @@ export default function Form() {
     const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
     setSelectedDiets(selectedOptions);
   };
-
+if (showSuccessMessage) {
   return (
     <div>
-      {showSuccessMessage && (
-        <div className={styles.successMessage}>
-          The recipe was created successfully.
-        </div>
-      )}
       <img src={Image} alt="fruits and vegetables" className={styles.formImageContainer}></img>
       <form className={styles.formContainer} method="post" onSubmit={handleSubmit}>
         <label className={styles.formName}>
@@ -175,5 +176,61 @@ export default function Form() {
         </div>
       </ReactModal>
     </div>
-  );
+  ); 
+} else {
+  return (
+    <div>
+      <img src={Image} alt="fruits and vegetables" className={styles.formImageContainer}></img>
+      <form className={styles.formContainer} method="post" onSubmit={handleSubmit}>
+        <label className={styles.formName}>
+          Recipe Name
+          <input type="text" value={name} onChange={handleNameChange} />
+        </label>
+        <br />
+        <label className={styles.formResume}>
+          Plate Resume
+          <textarea value={plate_resume} onChange={handlePlateResumeChange} />
+        </label>
+        <br />
+        <label className={styles.formHealth}>
+          Health Score
+          <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} />
+        </label>
+        <br />
+        <label className={styles.formStep}>
+          Steps
+          <textarea value={step_to_step} onChange={handleStepsChange} />
+        </label>
+        <br />
+        <label className={styles.formImage}>
+          Image
+          <input type="text" value={image} onChange={handleImageChange} />
+        </label>
+        <br />
+        <label className={styles.formDiets}>
+          Diets:
+          <select id="diets" value={diets} onChange={handleDietChange} multiple>
+            {data.map((option) => (
+              <option value={option.name} key={option.id}>{option.name}</option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <button className={styles.formButtonCreate} type="submit">Create recipe</button>
+      </form>
+
+      <div className={styles.formLinkHome}>
+        <Link to="/home">Home</Link>
+      </div>
+
+      <ReactModal isOpen={showModal} onRequestClose={handleModalClose}>
+        <div className={styles.formModal}>
+          <h2>Recipe Exists!</h2>
+          <button onClick={handleModalClose} className={styles.buttonModal}>Close</button>
+        </div>
+      </ReactModal>
+    </div>
+  );  
+}
+ 
 }

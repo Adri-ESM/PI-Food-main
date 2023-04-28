@@ -54,8 +54,13 @@ const createRecipePostHandler = async (req, res) => {
   console.log("EN EL HANDLER: "+diets);
   try {
 
-    await recipeController.createRecipePostHandler(req, res); // Update this line
-    res.status(200).send(`Recipe ${name} with ${image} ${plate_resume} ${health_score} ${step_to_step} ${diets} created successfully`);
+    const recipe = await recipeController.createRecipePostHandler(req, res); // Update this line
+    if(recipe !== "The recipe exists"){
+      res.status(200).send(`Recipe ${name} with ${image} ${plate_resume} ${health_score} ${step_to_step} ${diets} created successfully`);
+    }else{
+      res.status(200).send("The recipe exists");
+    }
+    
   } catch (error) {
 
     res.status(500).json({ error: error.message });
