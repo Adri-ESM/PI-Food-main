@@ -64,9 +64,9 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
         }
       return data.slice(startIndex, endIndex).map((card) => {
         return (
-          <div className={styles.cardsContainer}>
+          <div>
             <Link to={`/detail/${card.id}`} key={card.id}></Link>
-            <div>
+            <div className={styles.cardsContainer}>
               <img src={card.image} alt={card.name} className={styles.cardImage}/>
               <h2 className={styles.cardName}>{card.name}</h2>
               <p className={styles.cardResume}><b>Resume:</b> {card.plate_resume}</p>
