@@ -34,3 +34,29 @@
     color: #fff;
   }
  
+
+/* RESPONSIVE */
+@media screen and (max-width: 500px) {
+    .filterDietsHealth {
+        display: grid;
+    }
+    select{
+        width: 40%;
+    }
+    form{
+        display: flex;
+    }
+    form span{
+        margin-top: 20px;
+    }
+    input{
+        width: 35% !important;
+        height: 40px !important;
+    }
+    input::placeholder{
+        font-size: 1.4rem;
+    }
+    .filterButton{
+        margin-top: 25px;
+    }
+}
