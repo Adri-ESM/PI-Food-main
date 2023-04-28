@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { getRecipesByName, getAllRecipes, filterRecipesByDiet } from '../../redux/actions.js';
+import { getRecipesByName, getAllRecipes, filterRecipesByDiet,filterRecipesByHealthScore } from '../../redux/actions.js';
 import styles from './CardsStyles.module.css';
 import { Link } from "react-router-dom";
 
 
 
-const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
+const PaginationCards = ({ recipeName, cardsPerPage,filterOption, filterHealth }) => {
   const [data, setData] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
 
   useEffect(() => {
-
     if (recipeName !== '') {
- 
       getRecipesByName(recipeName).then((response) => {
         setData(response.data);
       });
@@ -22,13 +20,18 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption }) => {
       filterRecipesByDiet(filterOption).then((response) => {
         setData(response.data);
       });
+    }
+    if (filterHealth !== '' ){
+      filterRecipesByHealthScore(filterHealth).then((response) => {
+        setData(response.data);
+      });
     } 
-    if (filterOption === '' && recipeName === ''){
+    if (filterOption === '' && recipeName === '' && filterHealth === ''){
       getAllRecipes().then((response) => {
         setData(response.data);
       });
     }
-  }, [recipeName,filterOption]);
+  }, [recipeName,filterOption,filterHealth]);
 
   const itemsPerPage = cardsPerPage;
   const [currentPage, setCurrentPage] = useState(1);

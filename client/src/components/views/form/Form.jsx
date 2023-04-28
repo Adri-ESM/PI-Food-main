@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FormStyles.module.css';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 import Image from '../../../images/fruits-vegetables.jpg';
-import { createRecipe } from '../../../redux/actions.js';
+import { createRecipe, getAllDiets } from '../../../redux/actions.js';
 import ReactModal from 'react-modal';
 
 export default function Form() {
@@ -11,12 +11,17 @@ export default function Form() {
   const [health_score, setHealthScore] = useState('');
   const [step_to_step, setSteps] = useState('');
   const [image, setImage] = useState('');
-  // const [selectedDiets, setSelectedDiets] = useState([]);
-  const [diets, setSelectedDiet] = useState('');
+  const [diets, setSelectedDiets] = useState([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [names, setNames] = useState([]);
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    getAllDiets().then((response) => {
+      setData(response.data);
+    });
+  }, []);
 
   const resetForm = () => {
     setName('');
@@ -24,16 +29,16 @@ export default function Form() {
     setHealthScore('');
     setSteps('');
     setImage('');
-    // setSelectedDiets([]);
-    setSelectedDiet('');
+    setSelectedDiets([]);
   };
 
   const handleModalClose = () => {
     setShowModal(false);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newRecipe = {
       name,
       plate_resume,
@@ -41,7 +46,6 @@ export default function Form() {
       step_to_step,
       image,
       diets,
-      // selectedDiets
     };
 
     setShowModal(true);
@@ -57,8 +61,6 @@ export default function Form() {
       setNames(names);
     }
 
-  
-
     if (!/^[0-9]+$/.test(health_score)) {
       formErrors.health_score = 'The health score only can contain numbers';
     }
@@ -71,6 +73,7 @@ export default function Form() {
     const recipeData = JSON.parse(localStorage.getItem('recipes')) || [];
     recipeData.push(newRecipe);
     localStorage.setItem('recipes', JSON.stringify(recipeData));
+
     try {
       const response = createRecipe(newRecipe);
       console.log(response);
@@ -85,101 +88,87 @@ export default function Form() {
     setName(event.target.value);
   };
 
-  // const handlePlateResumeChange = (event) => {
-  //   setPlateResume(event.target.value);
-  // };
   const handlePlateResumeChange = (event) => {
     const value = event.target.value;
-      if (value.length <= 255) {
-        setPlateResume(value);
-      } else {
-        alert('Resume must be less than or equal to 255 characters');
-      }
+    if (value.length <= 255) {
+      setPlateResume(value);
+    } else {
+      alert('Resume must be less than or equal to 255 characters');
+    }
   };
 
   const handleHealthScoreChange = (event) => {
     setHealthScore(event.target.value);
   };
-
-  // const handleStepsChange = (event) => {
-  //   setSteps(event.target.value);
-  // };
   const handleStepsChange = (event) => {
     const value = event.target.value;
-      if (value.length <= 255) {
-        setSteps(value);
-      } else {
-        alert('Step to step must be less than or equal to 255 characters');
-      }
+    if (value.length <= 255) {
+      setSteps(value);
+    } else {
+      alert('Step to step must be less than or equal to 255 characters');
+    }
   };
 
   const handleImageChange = (event) => {
     setImage(event.target.value);
   };
 
-  const handleDiet = (event) => {
-    console.log(event.target.value);
-    setSelectedDiet(event.target.value);
+  const handleDietChange = (event) => {
+    const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
+    setSelectedDiets(selectedOptions);
   };
-
 
   return (
     <div>
       {showSuccessMessage && (
-      <div className={styles.successMessage}>
-        The recipe was created successfully.
-      </div>
+        <div className={styles.successMessage}>
+          The recipe was created successfully.
+        </div>
       )}
-       <img src={Image} alt="fruits and vegetables" className={styles.formImageContainer}></img> 
-    <form className={styles.formContainer} method='post' onSubmit={handleSubmit}>
-      <label className={styles.formName}>
-        Recipe Name
-        <input type="text" value={name} onChange={handleNameChange} />
-      </label>
-      <br />
-      <label className={styles.formResume}>
-        Plate Resume
-        <textarea value={plate_resume} onChange={handlePlateResumeChange} />
-      </label>
-      <br />
-      <label className={styles.formHealth}>
-        Health Score
-        <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} />
-      </label>
-      <br />
-      <label className={styles.formStep}>
-        Steps
-        <textarea value={step_to_step} onChange={handleStepsChange} />
-      </label>
-      <br />
-      <label className={styles.formImage}>
-        Image
-        <input type="text" value={image} onChange={handleImageChange} />
-      </label>
-      <br />
-      <label className={styles.formDiets}>
-        Diets:
-          <select onChange={handleDiet}>
-            <option value="">Select diet</option>
-            <option value="dairy free">dairy free</option>
-            <option value="gluten free">gluten free</option>
-            <option value="vegan">vegan</option>
-            <option value="whole 30">whole 30</option>
-            <option value="vegetarian">vegetarian</option>
-            <option value="lacto ovo vegetarian">lacto ovo vegetarian</option>
-            <option value="paleolithic">paleolithic</option>
-        
+      <img src={Image} alt="fruits and vegetables" className={styles.formImageContainer}></img>
+      <form className={styles.formContainer} method="post" onSubmit={handleSubmit}>
+        <label className={styles.formName}>
+          Recipe Name
+          <input type="text" value={name} onChange={handleNameChange} />
+        </label>
+        <br />
+        <label className={styles.formResume}>
+          Plate Resume
+          <textarea value={plate_resume} onChange={handlePlateResumeChange} />
+        </label>
+        <br />
+        <label className={styles.formHealth}>
+          Health Score
+          <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} />
+        </label>
+        <br />
+        <label className={styles.formStep}>
+          Steps
+          <textarea value={step_to_step} onChange={handleStepsChange} />
+        </label>
+        <br />
+        <label className={styles.formImage}>
+          Image
+          <input type="text" value={image} onChange={handleImageChange} />
+        </label>
+        <br />
+        <label className={styles.formDiets}>
+          Diets:
+          <select id="diets" value={diets} onChange={handleDietChange} multiple>
+            {data.map((option) => (
+              <option value={option.name} key={option.id}>{option.name}</option>
+            ))}
           </select>
-      </label>
-      <br />
-      <button className={styles.formButtonCreate} type="submit">Create recipe</button>
-    </form>
+        </label>
+        <br />
+        <button className={styles.formButtonCreate} type="submit">Create recipe</button>
+      </form>
 
-    <div className={styles.formLinkHome}>
-        <Link to='/home'>Home</Link>
+      <div className={styles.formLinkHome}>
+        <Link to="/home">Home</Link>
       </div>
 
-      <ReactModal  isOpen={showModal} onRequestClose={handleModalClose}>
+      <ReactModal isOpen={showModal} onRequestClose={handleModalClose}>
         <div className={styles.formModal}>
           <h2>Recipe Created!</h2>
           <button onClick={handleModalClose} className={styles.buttonModal}>Close</button>
@@ -188,6 +177,3 @@ export default function Form() {
     </div>
   );
 }
-
-  
-

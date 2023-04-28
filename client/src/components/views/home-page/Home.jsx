@@ -8,8 +8,7 @@ import Filter from '../../filter/Filter';
 export default function Home() {
   const [recipeName, setRecipeName] = useState('');
   const [filterOption, setFilterOption] = useState('');
-
-   const [filterHealthScore, setFilterHealthScore] = useState('');
+  const [filterHealth, setFilterHealthScore] = useState('');
 
   const handleSearch = (searchTerm) => {
     setRecipeName(searchTerm);
@@ -19,16 +18,16 @@ export default function Home() {
     setFilterOption(filterOption);
   };
 
-  const handleFilterHealthScore = (filterHealthScore) => {
-    setFilterHealthScore(filterHealthScore);
+  const handleFilterHealthScore = (filterHealth) => {
+    setFilterHealthScore(filterHealth);
   };
 
 
   return (
     <div className={styles.homeContainer}>
-      <Navbar onSearch={handleSearch} onFilter={handleFilter} onHealthScore={handleFilterHealthScore} />
+      <Navbar onSearch={handleSearch} onFilter={handleFilter} onHealthScore={handleFilterHealthScore}/>
       <Filter onFilter={handleFilter} onHealthScore={handleFilterHealthScore}/>
-      <Cards recipeName={recipeName} filterOption={filterOption} filterHealthScore={filterHealthScore} cardsPerPage={9} />
+      <Cards recipeName={recipeName} filterOption={filterOption} filterHealth={filterHealth} cardsPerPage={9} />
     </div>
   );
 }

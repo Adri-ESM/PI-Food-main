@@ -49,37 +49,31 @@ const getRecipeByName = async (req, res) => {
 };
 
 
-// const getRecipeByName = (req, res) => {
-
-//   const {name} = req.query;
-//   console.log("getRecipeByName Handler: "+ name);
-//   recipeController.getRecipeByName(name)
-//       .then(getRecipeByName => {
-//           res.status(200).json(getRecipeByName);
-//       })
-//       .catch(error => {
-//           res.status(401).json({error: error.message});
-//       });
-// };
-
-
-
 const createRecipePostHandler = async (req, res) => {
   const { name, image, plate_resume, health_score, step_to_step,diets } = req.body;
-
+  console.log("EN EL HANDLER: "+diets);
   try {
-    // Call the createRecipePostHandler function from the controller
-    await recipeController.createRecipePostHandler(req, res); // Update this line
 
-    // Do something with the response, e.g., send a success response
+    await recipeController.createRecipePostHandler(req, res); // Update this line
     res.status(200).send(`Recipe ${name} with ${image} ${plate_resume} ${health_score} ${step_to_step} ${diets} created successfully`);
   } catch (error) {
-    // Handle the error and send response to the client
+
     res.status(500).json({ error: error.message });
     console.log("Hay un error en PostCreate: " + error.message)
   }
 };
 
+
+const getRecipesbyHealth = async (req, res) => {
+  
+  const { score } = req.query;
+  try{    
+    const recipes = await recipeController.getRecipesbyHealth(score);
+    res.status(200).json(recipes);
+  } catch(error){
+    res.status(401).json({error: error.message});
+  }
+};
 
 module.exports = {
     getRecipeById,
@@ -87,4 +81,5 @@ module.exports = {
     createRecipePostHandler,
     getAllRecipes,
     getFilterRecipeByDiet,
+    getRecipesbyHealth,
 };

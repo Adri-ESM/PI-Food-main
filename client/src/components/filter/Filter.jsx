@@ -1,23 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FilterStyles.module.css';
+import { getAllDiets } from '../../redux/actions.js';
 
 export default function Filter({ onFilter, onHealthScore }) {
   const [selectedOption, setSelectedOption] = useState('');
   const [filterHealthScore, setfilterHealthScore] = useState('');
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getAllDiets().then((response) => {
+      setData(response.data);
+    });
+  }, []);
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
-  
+
   const handleFilterClick = () => {
     onFilter(selectedOption);
     setSelectedOption('');
   }
-  
-  const handlefilterHealthScoreClick = () => {
+
+  const handleInputChange = (event) => {
+    setfilterHealthScore(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     onHealthScore(filterHealthScore);
     setfilterHealthScore('');
-  }
+  };
+
+
   return (
     <div className={styles.filterDietsHealth}>
       <div className={styles.filterContainer}>
@@ -25,26 +40,25 @@ export default function Filter({ onFilter, onHealthScore }) {
           <span>Filter by Diets:</span>
           <select value={selectedOption} onChange={handleOptionChange}>
             <option value=""></option>
-            <option value="dairy free">dairy free</option>
-              <option value="gluten free">gluten free</option>
-              <option value="vegan">vegan</option>
-              <option value="whole 30">whole 30</option>
-              <option value="vegetarian">vegetarian</option>
-              <option value="lacto ovo vegetarian">lacto ovo vegetarian</option>
-              <option value="paleolithic">paleolithic</option>
+            {data.map((option) => (
+              <option value={option.name} key={option.id}>{option.name}</option>
+            ))}
           </select>
         </label>
-      <button className={styles.filterButton} onClick={handleFilterClick}>Filter</button>
+        <button className={styles.filterButton} onClick={handleFilterClick}>Filter</button>
       </div>
-      <div className={styles.filterHealthContainer}>
-        <label>
-          <span>Filter by HealthScore:</span>
-          <select value={filterHealthScore} onChange={handlefilterHealthScoreClick}>
-            <option value=""></option>
-          </select>
-        </label>
-      <button className={styles.filterButton} onClick={handlefilterHealthScoreClick}>Health Score</button>
-      </div>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          name='filterHealthScore'
+          value={filterHealthScore}
+          onChange={handleInputChange}
+          placeholder='Search By Health'
+        />
+        <div className={styles.searchButton}>
+          <button type='submit'>Search</button>
+        </div>
+      </form>
     </div>
   );
 }
