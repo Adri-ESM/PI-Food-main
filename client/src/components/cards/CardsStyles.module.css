@@ -3,6 +3,8 @@
 /*---------------------------------------------*
 /* CARDS CONTAINER */
 .cardsContainer{
+  display: flex;
+  flex-direction: column;
   border: 2px solid #2a9d8f;
   border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -26,15 +28,15 @@
 /*---------------------------------------------*
 /* CARDS POR PAGINA Y NUMEROS*/
 .cardsPerPage{
-    display: grid;
-    width: 85vw;
-    margin: 0 auto;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    margin-top: 30px;
-    padding-left: 50px;
-    padding-top: 50px;
-    text-align: left;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  width: 85vw;
+  margin: 0;
+  margin-top: 30px;
+  padding-left: 50px;
+  padding-top: 50px;
+  text-align: left;
     
 }
 .cardImage{
@@ -128,3 +130,5 @@
   background-color: rgb(8, 91, 80);
   color: #fff;
 }
+
+
