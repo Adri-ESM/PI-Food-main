@@ -87,6 +87,5 @@ module.exports = {
     createRecipePostHandler,
     getAllRecipes,
     getFilterRecipeByDiet,
-    getRecipesbyHealth,
-    getRecipeDetail
+    getRecipesbyHealth
 };
