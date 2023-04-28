@@ -80,6 +80,7 @@ const getRecipeByName = async (name) => {
     recipes.forEach((recipe) => {
       const dietNames = recipe.Diets ? recipe.Diets.map(diet => diet.name) : [];
       newRecipe = {
+        id: recipe.id,
         name: recipe.name.toLowerCase(),
         image: recipe.image,
         plate_resume: recipe.plate_resume,
@@ -105,6 +106,7 @@ const getRecipeByName = async (name) => {
           });
         });
         const newRecipe = {
+          id: recipe.id,
           name: recipe.title.toLowerCase(),
           image: recipe.image,
           plate_resume: recipe.summary.substring(0, 254),
@@ -145,6 +147,7 @@ const getAllRecipes = async () => {
     recipes.forEach((recipe) => {
       const dietNames = recipe.Diets.map(diet => diet.name);
       newRecipe = {
+        id: recipe.id,
         name: recipe.name.toLowerCase(),
         image: recipe.image,
         plate_resume: recipe.plate_resume,
@@ -168,6 +171,7 @@ const getAllRecipes = async () => {
           });
         });
         newRecipe = {
+          id: recipe.id,
           name: recipe.title.toLowerCase(),
           image: recipe.image,
           plate_resume: recipe.summary.substring(0, 254),
@@ -220,6 +224,7 @@ const getFilterRecipeByDiet = async (diet) => {
       const dietNames = [diet]; // use the filter value instead of recipe.Diets
       console.log("DIETA: "+dietNames);
       newRecipe = {
+        id: recipe.id,
         name: recipe.name.toLowerCase(),
         image: recipe.image,
         plate_resume: recipe.plate_resume,
@@ -245,6 +250,7 @@ const getFilterRecipeByDiet = async (diet) => {
           });
         });
         const newRecipe = {
+          id: recipe.id,
           name: recipe.title.toLowerCase(),
           image: recipe.image,
           plate_resume: recipe.summary.substring(0, 254),
@@ -291,6 +297,7 @@ const getRecipesbyHealth = async (healthScore) => {
 
       if(recipe.health_score <= healthScore){
         newRecipe = {
+          id: recipe.id,
           name: recipe.name.toLowerCase(),
           image: recipe.image,
           plate_resume: recipe.plate_resume,
@@ -316,6 +323,7 @@ const getRecipesbyHealth = async (healthScore) => {
         });
         if(recipe.healthScore <= healthScore){
           newRecipe = {
+            id: recipe.id,
             name: recipe.title.toLowerCase(),
             image: recipe.image,
             plate_resume: recipe.summary.substring(0, 254),

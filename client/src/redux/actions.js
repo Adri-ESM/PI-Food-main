@@ -50,3 +50,8 @@ export function filterRecipesByHealthScore(filterHealthScore) {
 
   return  response;
 }
+
+export function getRecipeDetail(recipeId) {
+  let url = `https://api-pi-food-main.onrender.com/recipes/${recipeId}`;
+  return axios.get(url);
+}

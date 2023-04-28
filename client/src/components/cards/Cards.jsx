@@ -68,7 +68,6 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption, filterHealth }
       return data.slice(startIndex, endIndex).map((card) => {
         return (
           <div>
-            <Link to={`/detail/${card.id}`} key={card.id}></Link>
             <div className={styles.cardsContainer}>
               <img src={card.image} alt={card.name} className={styles.cardImage}/>
               <h2 className={styles.cardName}>{card.name}</h2>
@@ -77,6 +76,9 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption, filterHealth }
                 <b>Diets:</b>{" "}
                 {card.diets && card.diets.map((diet) => diet.name)}
               </p>
+              <Link to={`/detail/${card.id}`}>
+                <p className={styles.cardSeeDetails}>See Details</p>
+              </Link>
             </div>
         </div>
       );

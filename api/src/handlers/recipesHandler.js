@@ -80,6 +80,19 @@ const getRecipesbyHealth = async (req, res) => {
   }
 };
 
+
+
+const getRecipeDetail = async (req, res) => {
+  
+  const { score } = req.query;
+  try{    
+    // const recipes = await recipeController.getRecipesbyHealth(score);
+    const recipes = "Hola"
+    res.status(200).json(recipes);
+  } catch(error){
+    res.status(401).json({error: error.message});
+  }
+};
 module.exports = {
     getRecipeById,
     getRecipeByName,
@@ -87,4 +100,5 @@ module.exports = {
     getAllRecipes,
     getFilterRecipeByDiet,
     getRecipesbyHealth,
+    getRecipeDetail
 };
