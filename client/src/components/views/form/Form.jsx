@@ -65,6 +65,16 @@ export default function Form() {
       //setErrors(formErrors);
       return;
     }
+    if (diets.length === 0) {
+      alert('Please select at least one diet');
+      return;
+    }
+
+    if (!name || !plate_resume || !health_score || !step_to_step || !image) {
+      alert('Please fill in all fields');
+      return;
+    }
+  
 
     const recipeData = JSON.parse(localStorage.getItem('recipes')) || [];
     recipeData.push(newRecipe);
@@ -82,7 +92,7 @@ export default function Form() {
     }
   };
 
-
+ 
 
   //   try {
   //     const response = await createRecipe(newRecipe);
@@ -134,6 +144,9 @@ export default function Form() {
     const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
     setSelectedDiets(selectedOptions);
   };
+ 
+ 
+
 if (showSuccessMessage) {
   return (
     <div>
