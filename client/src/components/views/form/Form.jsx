@@ -183,28 +183,29 @@ if (showSuccessMessage) {
       <img src={Image} alt="fruits and vegetables" className={styles.formImageContainer}></img>
       <form className={styles.formContainer} method="post" onSubmit={handleSubmit}>
         <label className={styles.formName}>
-          Recipe Name
-          <input type="text" value={name} onChange={handleNameChange} />
+          {/* Recipe Name */}
+          <input type="text" value={name} onChange={handleNameChange} placeholder='Recipe Name'/>
         </label>
         <br />
         <label className={styles.formResume}>
-          Plate Resume
-          <textarea value={plate_resume} onChange={handlePlateResumeChange} />
+          {/* Plate Resume */}
+          <textarea value={plate_resume} onChange={handlePlateResumeChange} placeholder='Plate Resume'/>
         </label>
         <br />
         <label className={styles.formHealth}>
-          Health Score
-          <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} />
+          {/* Health Score */}
+          <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} placeholder='Health Score'/>
         </label>
         <br />
         <label className={styles.formStep}>
-          Steps
-          <textarea value={step_to_step} onChange={handleStepsChange} />
+          {/* Steps */}
+          <textarea value={step_to_step} onChange={handleStepsChange} placeholder='Steps'/>
         </label>
         <br />
         <label className={styles.formImage}>
-          Image
-          <input type="text" value={image} onChange={handleImageChange} />
+          {/* Image */}
+          <input type="text" value={image} onChange={handleImageChange} placeholder='Image'/>
+          
         </label>
         <br />
         <label className={styles.formDiets}>

@@ -11,7 +11,7 @@
 }
 .formContainer {
     position: relative;
-    background-color: #23828b;
+    background-image: url("https://i.pinimg.com/originals/50/f1/6f/50f16f897ca4baff5d3863ac738d94e5.jpg");
     display: grid;
     flex-direction: column;
     align-items: center;
@@ -24,9 +24,10 @@
     font-size: 2rem;
     align-items: self-start;
     text-align: center;
-    color: #fff;
+    color: #0e26dd;
     margin: auto;
     border-radius: 20px;
+   
   }
 input, textarea{
     display: grid;
@@ -39,6 +40,7 @@ input, textarea{
     padding: 0 10px;
     outline: none;
     box-shadow: 0 0 5px #ccc;
+    font-size: 1.5rem;
   }
 .formLinkHome{
     display: flex;
@@ -56,15 +58,24 @@ input, textarea{
     position: relative;
     top: 200px;
 }
+.formName{
+  width: 900px;
+  margin-top: 170px;
+}
 
 select{
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 10px;
   outline: none;
   box-shadow: 0 0 5px #ccc;
   border-radius: 10px;
   margin-left: 10px;
+  width: 280px;
+  background-color: #032406e5;
+  opacity: .7;
+  color: #f2c319;
+  font-weight: 700;
 }
 
 .formLinkHome a{
@@ -87,7 +98,6 @@ select{
   outline: none;
   box-shadow: 0 0 5px #ccc;
   margin: auto;
-  margin-top: 20px;
   color: #fff;
   border: #fff;
 }
@@ -95,11 +105,8 @@ select{
   cursor: pointer;
   color: rgb(6, 72, 110);
 }
-input{
-  font-size: 2rem;
-}
-textarea{
-  font-size: 2rem;
+.formDiets{
+  display: flex;
 }
 .formModal{
   width: 500px;
@@ -121,7 +128,7 @@ textarea{
   font-size: 1.2rem;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
 .formContainer{
   width: 400px;
   height: 650px;
@@ -182,4 +189,4 @@ select{
     .formButtonCreate{
       margin-top: 2.5rem;
     }
-    }
+    } */
