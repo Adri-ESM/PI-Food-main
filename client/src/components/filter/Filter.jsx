@@ -49,18 +49,18 @@ export default function Filter({ onFilter, onHealthScore }) {
       </div>
 
     <div className={styles.filterHealthContainer}>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.filterHealthForm} onSubmit={handleSubmit}>
       <span>By Health:</span>
         <input
           name='filterHealthScore'
           value={filterHealthScore}
           onChange={handleInputChange}
           placeholder='Search'
-        />
-      </form>
+        />  
       <div>
           <button className={styles.filterButton} type='submit'>Filter</button>
         </div>
+        </form>
     </div>
     </div>
   );

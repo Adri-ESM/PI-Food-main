@@ -1,11 +1,56 @@
-.cardsContainer{
+.detailContainer{
+    width: 600px;
+    height: 700px;
     border: 2px solid #2a9d8f;
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
+    margin-left: 30%;
+    /* background-color: #f4a261; */
+    background-image: url("https://i.pinimg.com/originals/50/f1/6f/50f16f897ca4baff5d3863ac738d94e5.jpg");
   }
-  .cardsContainer:hover{
+  .detailContainer:hover{
     transform: translateY(-10px);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     opacity: 5;
     z-index: 2;
   }
+  .detailImage{
+    width: 100%;
+    height: 150px;
+    /* object-fit: cover; */
+    border-radius: 10px 10px 0 0;
+  }
+  .detailInfo{
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgb(13, 63, 22);
+    margin-top: 130px;
+    font-weight: 700;
+  }
+  .detailName span, .detailResume span, .detailSteps span{
+    font-weight: bold;
+    font-size: 1,5rem;
+    color: #2a67c9;
+    font-weight: 700;
+  }
+
+  .buttonHome{
+    text-decoration: none;
+    background-color: #17087f;
+    opacity: .7;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 5px #ccc;  
+    color: #c5fd36;
+    margin-left: 270px;
+    margin-top: 20px;
+    width: 300px;
+  }
+ 

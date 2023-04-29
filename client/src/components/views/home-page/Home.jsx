@@ -22,7 +22,7 @@ export default function Home() {
     setFilterHealthScore(filterHealth);
   };
 
-
+ 
   return (
     <div className={styles.homeContainer}>
       <Navbar onSearch={handleSearch} onFilter={handleFilter} onHealthScore={handleFilterHealthScore}/>

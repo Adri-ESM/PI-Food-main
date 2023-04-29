@@ -18,16 +18,26 @@ const Detail = () => {
     return <div>Loading...</div>;
   }
 
+  function toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  }
   return (
     <div className={styles.detailContainer}>
-      <h1>Soy el Detail</h1>
-      <p>Name: {recipe.name}</p>
-      <p>Resume: {recipe.plate_resume}</p>
-      <p>Steps: {recipe.step_to_step}</p>
-
-      <Link to={`/home`}>
-                  <p className={styles.cardSeeDetails}>Home</p>
-                </Link>
+          <div className={styles.detailInfo}>
+              <p className={styles.detailName}><span>Name</span> <br></br> {toTitleCase(recipe.name)}</p>
+              <p className={styles.detailResume}><span>Resume</span><br></br> {recipe.plate_resume}</p>
+              <p className={styles.detailSteps}><span>Steps</span><br></br> {recipe.step_to_step}</p>
+          </div>
+          <div>
+        <Link className={styles.buttonHome} to={`/home`}>
+           Home
+        </Link>
+        </div>
     </div>
 
   );
