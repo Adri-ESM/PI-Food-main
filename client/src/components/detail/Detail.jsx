@@ -27,19 +27,24 @@ const Detail = () => {
     );
   }
   return (
+    <div>
     <div className={styles.detailContainer}>
-          <div className={styles.detailInfo}>
+              <div>
+              <img className={styles.detailImg} src={recipe.image} alt="recipe" width={400} height={300}/>
+              </div>
+              <div className={styles.detailInfo}>
               <p className={styles.detailName}><span>Name</span> <br></br> {toTitleCase(recipe.name)}</p>
               <p className={styles.detailResume}><span>Resume</span><br></br> {recipe.plate_resume}</p>
               <p className={styles.detailSteps}><span>Steps</span><br></br> {recipe.step_to_step}</p>
+          </div>
           </div>
           <div>
         <Link className={styles.buttonHome} to={`/home`}>
            Home
         </Link>
         </div>
+    
     </div>
-
   );
 };
 
