@@ -11,7 +11,17 @@ const { Op } = require('sequelize');
 const createRecipePostHandler = async (req, res) => {
   const { name, image, plate_resume, health_score, step_to_step, diets } = req.body;
   console.log("createRecipePostHandler: "+name, image, plate_resume, health_score, step_to_step, diets);
-  if(!getRecipeByName(name.toLowerCase())){
+  let recipe = '';
+  console.log("NAME: "+name);
+  try {
+    recipe = await Recipe.findOne({ where: { name: name } });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+
+  if(recipe === null){
+    console.log("The recipe NOT  exists");
     try {
       const newRecipe = await Recipe.create({
         name: name.toLowerCase(),
@@ -25,15 +35,13 @@ const createRecipePostHandler = async (req, res) => {
       if (diets && diets.length > 0) {
         diets.forEach(async diet => {
           const existingDiet = await Diet.findOne({ where: { name: diet } });
-          await newRecipe.addDiets(existingDiet);
-          
+          await newRecipe.addDiets(existingDiet);      
         });
       }
     } catch (error) {
      console.log({ error: error.message + "Controller" });
     }
   }else{
-    console.log("The recipe exists");
     return "The recipe exists"
   }
 
