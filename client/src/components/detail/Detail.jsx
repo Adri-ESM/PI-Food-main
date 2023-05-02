@@ -30,18 +30,26 @@ const Detail = () => {
     <div>
     <div className={styles.detailContainer}>
           <div className={styles.detailInfo}>
-          <p className={styles.detailName}>{recipe.id}</p>
+            <div>
+              <p className={styles.detailId}>{recipe.id}</p>
+          </div>
+          <div>
               <img className={styles.detailImg} src={recipe.image} alt="recipe" width={400} height={300}/>
+          </div>
+            
               {recipe && recipe.name && (
             <p className={styles.detailName}>
               <span>Name</span> <br></br> {toTitleCase(recipe.name)}
             </p>
               )}
-  
+            <div className={styles.detailInfo2}>
               <p className={styles.detailSteps}><span>Resume</span><br></br> {recipe.plate_resume}</p>
-              <p className={styles.detailSteps}><span>Healt Score</span><br></br> {recipe.health_score}</p>
               <p className={styles.detailSteps}><span>Steps</span><br></br> {recipe.steps}</p>
+            </div>
+            <div className={styles.detailInfo3}>
+              <p className={styles.detailSteps}><span>Healt Score</span><br></br> {recipe.health_score}</p>
               <p className={styles.detailSteps}><span>Tipe of Diets</span><br></br> {recipe.diet}</p>
+            </div>
           </div>
           </div>
           <div>
