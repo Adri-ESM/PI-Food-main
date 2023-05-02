@@ -31,7 +31,7 @@ const Detail = () => {
     <div className={styles.detailContainer}>
           <div className={styles.detailInfo}>
             <div>
-              <p className={styles.detailId}>{recipe.id}</p>
+              <p className={styles.detailId}>Id: {recipe.id}</p>
           </div>
           <div>
               <img className={styles.detailImg} src={recipe.image} alt="recipe" width={400} height={300}/>
