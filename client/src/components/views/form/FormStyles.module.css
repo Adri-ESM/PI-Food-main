@@ -47,8 +47,6 @@ input, textarea{
     font-size: 1.5rem;
   }
 
-
-
 .formLinkHome{
     display: flex;
     justify-content: center;
@@ -172,13 +170,30 @@ input, textarea{
   font-weight: 700;
   padding-top: 10px;
 }
-.formTwo .formName, .formTwo .formHealth, .formTwo .formImage{
+.formTwo .formName, .formTwo .formImage{
   width: 1330px;
   margin-left: 20px;
 }
 .formTwo .formResume, .formTwo .formStep{
   margin-left: 20px;
 }
+
+/* .formTwo .healthScoreInput input::before {
+  content: '%';
+  position: absolute;
+  color: #0e26dd;
+} */
+.formTwo .formHealth, .formOne .formHealth {
+  display: flex;
+  width: 300px;
+  margin-left: 20px;
+}
+.healthPercent{
+  align-self: center;
+  color: black;
+  font-weight: 700;
+}
+
 /* .buttonModal{
   width: 150px;
   height: 50px;

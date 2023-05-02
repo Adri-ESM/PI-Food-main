@@ -1,6 +1,4 @@
 
-
-//-----------------------------------CODIGO FINAL DE ENRIQUE CON MODALS----------------------------------------------
 import React, { useState, useEffect } from 'react';
 import styles from './FormStyles.module.css';
 import { Link } from 'react-router-dom';
@@ -91,7 +89,7 @@ export default function Form() {
 
 
       if(response !== "The recipe exists"){
-        setShowSuccessMessage(true); // Muestra mensaje de éxito de envío de formulario.
+        setShowSuccessMessage(true);
       }else {
         console.log("RESPUESTA: "+response);
         setShowSuccessMessage(false);
@@ -153,7 +151,7 @@ if (showSuccessMessage) {
         <br />
         <label className={styles.formHealth}>
           {/* Health Score */}
-          <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} placeholder='Health Score'/>
+          <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} placeholder='Health Score' className={styles.healthScoreInput}/>
         </label>
         <br />
         <label className={styles.formStep}>
@@ -209,8 +207,10 @@ if (showSuccessMessage) {
         <br />
         <label className={styles.formHealth}>
           {/* Health Score */}
-          <input type="number" min="0" max="9999" value={health_score} onChange={handleHealthScoreChange} placeholder='Health Score'/>
+          <input type="number" min="0" max="999" value={health_score} onChange={handleHealthScoreChange} placeholder='Health Score' className={styles.healthScoreInput}/>
+          <label className={styles.healthPercent}><span>%</span></label>
         </label>
+      
         <br />
         <label className={styles.formStep}>
           {/* Steps */}

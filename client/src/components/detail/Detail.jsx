@@ -44,7 +44,7 @@ const Detail = () => {
               )}
             <div className={styles.detailInfo2}>
               <p className={styles.detailSteps}><span>Resume</span><br></br> {recipe.plate_resume}</p>
-              <p className={styles.detailSteps}><span>Steps</span><br></br> {recipe.steps}</p>
+              <p className={styles.detailSteps}><span>Steps</span><br></br> {recipe.step_to_step}</p>
             </div>
             <div className={styles.detailInfo3}>
               <p className={styles.detailSteps}><span>Healt Score</span><br></br> {recipe.health_score}</p>

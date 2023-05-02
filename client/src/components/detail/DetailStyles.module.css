@@ -43,10 +43,11 @@
     margin-bottom: 0;
   }
   .detailInfo2, .detailInfo3{
-    display: flex;
+    display: grid;
     text-align: justify;
     font-size: 1rem;
     justify-content: space-between;
+    grid-column-start: none;
   }
   .detailName span, .detailResume span, .detailSteps span, .detailId span{
     font-weight: bold;
@@ -200,7 +201,7 @@
 
   @media screen and (min-width: 300px){
     .detailContainer{
-      height: 100rem;
+      height: 130rem;
     }
     .detailInfo{
       width: 500px;
@@ -223,7 +224,7 @@
       display: none;
     }
     .detailId{
-      margin-top: 250px;
+      margin-top: 280px;
     }
     .buttonHome{
       margin-left: 40%;
