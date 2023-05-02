@@ -38,7 +38,7 @@ export default function Navbar({ onSearch }) {
                 event.target.value = '';
               }
             }}
-            placeholder='Search Recipes'
+            placeholder='Recipes'
           />
         <div className={styles.searchButton}>
           <button type='submit'>View</button>

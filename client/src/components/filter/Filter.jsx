@@ -38,8 +38,8 @@ export default function Filter({ onFilter, onHealthScore }) {
       <div className={styles.filterContainer}>
         <label>
           <span>Types of Diets:</span>
-          <select value={selectedOption} onChange={handleOptionChange}>
-            <option className={styles.option} value="">Search</option>
+          <select className={styles.filterDiets} value={selectedOption} onChange={handleOptionChange}>
+            <option className={styles.filterDiet} value="">Search</option>
             {data.map((option) => (
               <option value={option.name} key={option.id}>{option.name}</option>
             ))}
