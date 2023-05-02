@@ -50,18 +50,54 @@ const createRecipePostHandler = async (req, res) => {
 
 //------------GET RECIPES BY ID------------
 const getRecipeById = async (idRecipe, source) => {
-  const query = `https://api.spoonacular.com/recipes/complexSearch?id=${idRecipe}&apiKey=${API_KEY}`;
+  const query = `https://api.spoonacular.com/recipes/complexSearch?id=${idRecipe}&apiKey=${API_KEY}&addRecipeInformation=true`;
   console.log("entro a getRecipeById ");
 
   let recipe;
+  let infoApi;
+  let steps= '';
   if (source === "api") {
-    await (axios.get(query))
-    .then((response) => {
-      recipe = response.data
-    })
+    infoApi = (await axios.get(query));
+    for (const recipeApi of infoApi.data.results) {
+      recipeApi.analyzedInstructions.forEach(intruction =>{
+        intruction.steps.forEach(step =>{
+          steps = steps + step.step;
+        });
+      });
+      const newRecipe = {
+        id: recipeApi.id,
+        name: recipeApi.title.toLowerCase(),
+        image: recipeApi.image,
+        plate_resume: recipeApi.summary.substring(0, 254),
+        health_score: recipeApi.healthScore,
+        step_to_step: steps.substring(0, 254),
+        diets: []
+      };
+      
+      if (recipeApi.diets && recipeApi.diets.length > 0) {
+        const diets = recipeApi.diets.map((diet) => ({ name: diet }));
+        newRecipe.diets = diets;
+      }
+      recipe = newRecipe;
+    }
   } else {
-    
-    recipe = await Recipe.findByPk(idRecipe.toLowerCase())
+    const recipeDB = await Recipe.findByPk(idRecipe.toLowerCase(), {
+      include: [Diet],
+    });
+      if(recipeDB) {
+        const dietNames = recipeDB.Diets ? recipeDB.Diets.map(diet => diet.name) : [];
+        const newRecipe = {
+          id: recipeDB.id,
+          name: recipeDB.name.toLowerCase(),
+          image: recipeDB.image,
+          plate_resume: recipeDB.plate_resume,
+          health_score: recipeDB.health_score,
+          step_to_step: recipeDB.step_to_step,
+          diets: [{name: dietNames}]
+        };
+
+        recipe = newRecipe;
+      }
   }
   return recipe;
 }
@@ -122,11 +158,12 @@ const getRecipeByName = async (name) => {
           step_to_step: steps.substring(0, 254),
           diets: []
         };
-        recipesDb.push(newRecipe);
+        
         if (recipe.diets && recipe.diets.length > 0) {
           const diets = recipe.diets.map((diet) => ({ name: diet }));
           newRecipe.diets = diets;
         }
+        recipesDb.push(newRecipe);
       }
     }
   }catch{

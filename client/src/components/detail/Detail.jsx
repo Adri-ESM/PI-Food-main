@@ -48,7 +48,7 @@ const Detail = () => {
             </div>
             <div className={styles.detailInfo3}>
               <p className={styles.detailSteps}><span>Healt Score</span><br></br> {recipe.health_score}</p>
-              <p className={styles.detailSteps}><span>Tipe of Diets</span><br></br> {recipe.diet}</p>
+              <p className={styles.detailSteps}><span>Tipe of Diets</span><br></br> {recipe.diets && recipe.diets.map((diet) => diet.name)}</p>
             </div>
           </div>
           </div>
