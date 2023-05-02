@@ -86,6 +86,7 @@
       font-size: 2.5rem;
       height: 1200px;
     }
+
     .detailName span, .detailResume span, .detailSteps span{
       font-size: 2.5rem;
     }
@@ -102,6 +103,9 @@
       margin-top: 100px;
       margin-bottom: 100px;
       height: 1200px;
+    }
+    .detailId{
+      margin-top: 250px;
     }
     .detailImg{
       width: 600px;
@@ -142,11 +146,14 @@
     .detailName span, .detailResume span, .detailSteps span{
       font-size: 2rem;
     }
+    .detailId{
+      margin-top: 250px;
+    }
     .detailImg{
       width:400px;
       height: 300px;
       border-radius: 50%;
-      margin-top: 100px;
+      margin-top: 50px;
     }
     .detailResume{
       display: none;
@@ -168,14 +175,17 @@
       line-height: normal;
       font-size: 1.5rem;
     }
-    .detailName span, .detailResume span, .detailSteps span{
-      font-size: 2rem;
+    .detailName span, .detailSteps span{
+      font-size: 1.5rem;
+    }
+    .detailId{
+      margin-top: 250px;
     }
     .detailImg{
       width: 350px;
       height: 300px;
       border-radius: 50%;
-      margin-top: 100px;
+      margin-top: 50px;
     }
     .detailResume{
       display: none;
@@ -195,10 +205,13 @@
     .detailInfo{
       width: 500px;
       line-height: normal;
+      font-size: 2rem;
+    }
+    .detailName, .detailSteps{
       font-size: 1.5rem;
     }
-    .detailName span, .detailResume span, .detailSteps span{
-      font-size: 2rem;
+    .detailName span, .detailSteps span{
+      font-size: 1.7rem;
     }
     .detailImg{
       width: 400px;
