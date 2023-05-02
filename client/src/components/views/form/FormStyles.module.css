@@ -149,7 +149,7 @@ input, textarea{
 }
 .formOne input::placeholder, textarea::placeholder{
   color:rgb(6, 72, 110);
-  text-align: center;
+  text-align: left;
 }
 .formOne textarea::placeholder{
   font-weight: 700;
@@ -166,14 +166,14 @@ input, textarea{
 
 .formTwo input::placeholder, textarea::placeholder{
   color:rgb(6, 72, 110);
-  text-align: center;
+  text-align: left;
 }
 .formTwo textarea::placeholder{
   font-weight: 700;
   padding-top: 10px;
 }
 .formTwo .formName, .formTwo .formHealth, .formTwo .formImage{
-  width: 1150px;
+  width: 1330px;
   margin-left: 20px;
 }
 .formTwo .formResume, .formTwo .formStep{
