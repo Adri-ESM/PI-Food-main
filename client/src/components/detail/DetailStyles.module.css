@@ -1,7 +1,7 @@
 .detailContainer{
     display: flex;
     width: 80%;
-    height: 1000px;
+    height: 1200px;
     border: 2px solid #2a9d8f;
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -45,7 +45,7 @@
 
   .buttonHome{
     text-decoration: none;
-    background-color: #17087f;
+    background-color: #1e3e08;
     opacity: .7;
     font-size: 20px;
     font-weight: bold;
@@ -55,9 +55,9 @@
     cursor: pointer;
     outline: none;
     box-shadow: 0 0 5px #ccc;  
-    color: #c5fd36;
-    margin-top: 50px;
-    justify-content: center;
+    color: #fdfdfc;
+    position: absolute;
+    margin-left: 50%;
   }
 
   .detailImg{
@@ -66,9 +66,22 @@
 
   /*-----------------------------------RESPONSIVE-----------------------------------*/
  
-  @media screen and (min-width: 1052px){
+  @media screen and (max-width: 1052px){
     .detailImg{
      margin-top: 250px;
+     width: 600px;
+      height: 600px;
+      font-size: 2.5rem;
+      height: 1200px;
+    }
+    .detailName span, .detailResume span, .detailSteps span{
+      font-size: 2.5rem;
+    }
+    .buttonHome{
+      margin-left: 45%;
+      width: 200px;
+      text-align: center;
+      font-size: 2rem;
     }
   }
 
@@ -76,27 +89,35 @@
     .detailContainer{
       margin-top: 100px;
       margin-bottom: 100px;
+      height: 1200px;
     }
     .detailImg{
-      width: 500px;
-      height: 500px;
-      margin-left: 30px;
+      width: 600px;
+      height: 400px;
     }
     .detailInfo{
       width: 600px;
       margin-right:30px;
       line-height: 2rem;
+      font-size: 1.8rem;
     }
     .detailName span, .detailResume span, .detailSteps span{
-      font-size: 1.5rem;
+      font-size: 2rem;
     }
     .buttonHome{
       margin-top: 50px;
+    }
+    .buttonHome{
+      margin-left: 45%;
+      width: 200px;
+      text-align: center;
+      font-size: 2rem;
     }
   }
     
   @media screen and (min-width: 845px){
     .detailContainer{
+      height: 1200px;
       display: block;
       margin: auto;
       text-align: center;
@@ -104,9 +125,13 @@
     .detailInfo{
       width: 500px;
       line-height: normal;
+      font-size: 1.5rem;
+    }
+    .detailName span, .detailResume span, .detailSteps span{
+      font-size: 2rem;
     }
     .detailImg{
-      width: 300px;
+      width:400px;
       height: 300px;
       border-radius: 50%;
       margin-top: 100px;
@@ -114,4 +139,69 @@
     .detailResume{
       display: none;
     }
+    .buttonHome{
+      margin-left: 45%;
+      width: 200px;
+      text-align: center;
+      font-size: 2rem;
+    }
   }
+
+  @media screen and (min-width: 500px){
+    .detailContainer{
+      height: 1200px;
+    }
+    .detailInfo{
+      width: 500px;
+      line-height: normal;
+      font-size: 1.5rem;
+    }
+    .detailName span, .detailResume span, .detailSteps span{
+      font-size: 2rem;
+    }
+    .detailImg{
+      width: 350px;
+      height: 300px;
+      border-radius: 50%;
+      margin-top: 100px;
+    }
+    .detailResume{
+      display: none;
+    }
+    .buttonHome{
+      margin-left: 45%;
+      width: 200px;
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 300px){
+    .detailContainer{
+      height: 1200px;
+    }
+    .detailInfo{
+      width: 500px;
+      line-height: normal;
+      font-size: 1.5rem;
+    }
+    .detailName span, .detailResume span, .detailSteps span{
+      font-size: 2rem;
+    }
+    .detailImg{
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      margin-top: 100px;
+    }
+    .detailResume{
+      display: none;
+    }
+    .buttonHome{
+      margin-left: 40%;
+      width: 200px;
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
+

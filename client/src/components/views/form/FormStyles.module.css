@@ -29,6 +29,10 @@
     border-radius: 20px;
    
   }
+  .formContainer, .formOne, .formTwo{
+    color: #0e26dd;
+  }
+ 
 input, textarea{
     display: grid;
     width: 400px;
@@ -42,6 +46,9 @@ input, textarea{
     box-shadow: 0 0 5px #ccc;
     font-size: 1.5rem;
   }
+
+
+
 .formLinkHome{
     display: flex;
     justify-content: center;
@@ -61,9 +68,27 @@ input, textarea{
 .formName{
   width: 900px;
   margin-top: 170px;
+  color: #042e06;
+}
+.formName textarea::placeholder{
+  color: #0e26dd;
+}
+.formOne select{
+  text-align: center;
+  font-size: 2rem;
+  padding: 10px;
+  outline: none;
+  box-shadow: 0 0 5px #ccc;
+  border-radius: 10px;
+  margin-left: 10px;
+  width: 280px;
+  background-color: #032406e5;
+  opacity: .7;
+  color: #f2c319;
+  font-weight: 700;
 }
 
-select{
+.formTwo select{
   text-align: center;
   font-size: 2rem;
   padding: 10px;
@@ -107,6 +132,8 @@ select{
 }
 .formDiets{
   display: flex;
+  color:rgb(6, 72, 110);
+  margin-left: 40px;
 }
 .formModal{
   width: 500px;
@@ -120,13 +147,45 @@ select{
   z-index: 1000;
   text-align: center;
 }
-.buttonModal{
+.formOne input::placeholder, textarea::placeholder{
+  color:rgb(6, 72, 110);
+  text-align: center;
+}
+.formOne textarea::placeholder{
+  font-weight: 700;
+  padding-top: 10px;
+}
+.formOne .formName, .formOne .formHealth, .formOne .formImage{
+  width: 1150px;
+  margin-left: 20px;
+}
+.formOne .formResume, .formOne .formStep{
+  margin-left: 20px;
+}
+
+
+.formTwo input::placeholder, textarea::placeholder{
+  color:rgb(6, 72, 110);
+  text-align: center;
+}
+.formTwo textarea::placeholder{
+  font-weight: 700;
+  padding-top: 10px;
+}
+.formTwo .formName, .formTwo .formHealth, .formTwo .formImage{
+  width: 1150px;
+  margin-left: 20px;
+}
+.formTwo .formResume, .formTwo .formStep{
+  margin-left: 20px;
+}
+/* .buttonModal{
   width: 150px;
   height: 50px;
   background: #042e06;
   color: #fff;
   font-size: 1.2rem;
-}
+} */
 
 /* @media screen and (max-width: 768px) {
 .formContainer{

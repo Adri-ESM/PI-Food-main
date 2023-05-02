@@ -5,7 +5,9 @@ import Image from '../../../images/fruits-vegetables.jpg';
 import ImageResp from '../../../images/food-responsive.jpg';
 
 
+
 export default function LandingPage() {
+
   return (
     <div className={styles.landingContainer}>
         <img src={Image} alt="fruits and vegetables" className={styles.landingImage}></img> 

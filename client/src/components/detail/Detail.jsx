@@ -5,16 +5,16 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Detail = () => {
-  const { id } = useParams();
+  const { id, diet } = useParams();
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    getRecipeDetail(id).then((response) => {
+    getRecipeDetail(id, diet).then((response) => {
       setRecipe(response.data);
     });
-  }, [id]);
+  }, [id, diet]);
 
-  if (!recipe) {
+  if (!recipe && !diet) {
     return <div>Loading...</div>;
   }
 
@@ -29,13 +29,19 @@ const Detail = () => {
   return (
     <div>
     <div className={styles.detailContainer}>
-              <div>
+          <div className={styles.detailInfo}>
+          <p className={styles.detailName}>{recipe.id}</p>
               <img className={styles.detailImg} src={recipe.image} alt="recipe" width={400} height={300}/>
-              </div>
-              <div className={styles.detailInfo}>
-              <p className={styles.detailName}><span>Name</span> <br></br> {toTitleCase(recipe.name)}</p>
-              <p className={styles.detailResume}><span>Resume</span><br></br> {recipe.plate_resume}</p>
-              <p className={styles.detailSteps}><span>Steps</span><br></br> {recipe.step_to_step}</p>
+              {recipe && recipe.name && (
+            <p className={styles.detailName}>
+              <span>Name</span> <br></br> {toTitleCase(recipe.name)}
+            </p>
+              )}
+  
+              <p className={styles.detailSteps}><span>Resume</span><br></br> {recipe.plate_resume}</p>
+              <p className={styles.detailSteps}><span>Healt Score</span><br></br> {recipe.health_score}</p>
+              <p className={styles.detailSteps}><span>Steps</span><br></br> {recipe.steps}</p>
+              <p className={styles.detailSteps}><span>Tipe of Diets</span><br></br> {recipe.diet}</p>
           </div>
           </div>
           <div>
@@ -43,8 +49,8 @@ const Detail = () => {
            Home
         </Link>
         </div>
-    
-    </div>
+        </div>
+
   );
 };
 
