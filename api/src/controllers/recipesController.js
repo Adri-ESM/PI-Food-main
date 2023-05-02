@@ -141,7 +141,7 @@ const getRecipeByName = async (name) => {
   try{
     if(recipesDb.length < 100){
       console.log("falta gente");
-      const query = `https://api.spoonacular.com/recipes/complexSearch?query=${name}&apiKey=${API_KEY}&addRecipeInformation=true&number=10`;
+      const query = `https://api.spoonacular.com/recipes/complexSearch?query=${name}&apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
       infoApi = (await axios.get(query));
       for (const recipe of infoApi.data.results) {
         recipe.analyzedInstructions.forEach(intruction =>{
@@ -207,7 +207,7 @@ const getAllRecipes = async () => {
     throw error;
   }
   try{
-      const query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`;
+      const query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
       infoApi = (await axios.get(query));
       for (const recipe of infoApi.data.results) {
         recipe.analyzedInstructions.forEach(intruction =>{
@@ -358,7 +358,7 @@ const getRecipesbyHealth = async (healthScore) => {
     throw error;
   }
   try{
-      const query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`;
+      const query = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
       infoApi = (await axios.get(query));
       for (const recipe of infoApi.data.results) {
         recipe.analyzedInstructions.forEach(intruction =>{

@@ -171,7 +171,7 @@ input, textarea{
   padding-top: 10px;
 }
 .formTwo .formName, .formTwo .formImage{
-  width: 1330px;
+  width: 900px;
   margin-left: 20px;
 }
 .formTwo .formResume, .formTwo .formStep{
@@ -185,14 +185,10 @@ input, textarea{
 } */
 .formTwo .formHealth, .formOne .formHealth {
   display: flex;
-  width: 300px;
+  width: 900px;
   margin-left: 20px;
 }
-.healthPercent{
-  align-self: center;
-  color: black;
-  font-weight: 700;
-}
+
 
 /* .buttonModal{
   width: 150px;

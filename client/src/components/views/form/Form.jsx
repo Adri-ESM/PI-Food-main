@@ -208,7 +208,6 @@ if (showSuccessMessage) {
         <label className={styles.formHealth}>
           {/* Health Score */}
           <input type="number" min="0" max="999" value={health_score} onChange={handleHealthScoreChange} placeholder='Health Score' className={styles.healthScoreInput}/>
-          <label className={styles.healthPercent}><span>%</span></label>
         </label>
       
         <br />
