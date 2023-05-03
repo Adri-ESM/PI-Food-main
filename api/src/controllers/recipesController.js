@@ -294,6 +294,8 @@ const getFilterRecipeByDiet = async (diet) => {
             steps = steps + step.step;
           });
         });
+
+        
         const newRecipe = {
           id: recipe.id,
           name: recipe.title.toLowerCase(),

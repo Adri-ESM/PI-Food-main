@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const PaginationCards = ({ recipeName, cardsPerPage,filterOption, filterHealth }) => {
   const [data, setData] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
+  
 
   useEffect(() => {
     if (recipeName !== '') {
@@ -84,7 +85,7 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption, filterHealth }
               <p className={styles.cardResume}><b>Healt Score:</b> {card.health_score + '%'}</p>
               <p className={styles.cardResume}>
                 <b>Diets:</b>{" "}
-                {diets}
+                {diets +  "."}
               </p>
               <Link className={styles.cardLinkDetail} to={`/detail/${card.id}`}>
                 <p className={styles.cardSeeDetails}>See Details</p>
@@ -165,5 +166,15 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption, filterHealth }
 };
 
 export default PaginationCards;
+
+
+
+
+
+
+
+
+
+
 
 
