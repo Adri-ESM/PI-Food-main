@@ -28,6 +28,9 @@ const Detail = () => {
   }
 
   function removeHTMLTags(str) {
+    if (typeof str !== 'string') {
+      return str;
+    }
     return str.replace(/<[^>]+>/g, '');
   }
 

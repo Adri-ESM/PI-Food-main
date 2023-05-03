@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import styles from './FormStyles.module.css';
 import { Link } from 'react-router-dom';
 import Image from '../../../images/fruits-vegetables.jpg';
 import { createRecipe, getAllDiets } from '../../../redux/actions.js';
-import ReactModal from 'react-modal';
+// import ReactModal from 'react-modal';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -14,7 +13,7 @@ export default function Form() {
   const [image, setImage] = useState('');
   const [diets, setSelectedDiets] = useState([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [formErrors, setFormErrors] = useState({});
   const [names, setNames] = useState([]);
   const [data, setData] = useState([]);
@@ -34,9 +33,9 @@ export default function Form() {
     setSelectedDiets([]);
   };
 
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
+  // const handleModalClose = () => {
+  //   setShowModal(false);
+  // };
 
   
   const handleSubmit = async (e) => {
@@ -52,7 +51,7 @@ export default function Form() {
       diets,
     };
 
-    setShowModal(true);
+    // setShowModal(true);
    // Validar los campos del formulario
 
     
@@ -79,12 +78,23 @@ export default function Form() {
     }
 
     const recipeData = JSON.parse(localStorage.getItem('recipes')) || [];
+
+    const filteredRecipes = recipeData.filter((recipe) => recipe.name === name);
+
+  if (filteredRecipes.length > 0) {
+    alert('This recipe name is already taken. Please choose another name.');
+    return;
+  }
+
+  // Resto del código para guardar la receta en localStorage y en la base de datos...
+
+
     recipeData.push(newRecipe);
     localStorage.setItem('recipes', JSON.stringify(recipeData));
     setNames(names => [...names, name]); // Agrega el nombre de la receta al array de nombres de recetas. LINEA DEMAS
 
     try {
-      const response = await createRecipe(newRecipe);
+      const response = createRecipe(newRecipe);
       console.log(response);
 
 
@@ -243,8 +253,28 @@ if (showSuccessMessage) {
           <button onClick={handleModalClose} className={styles.buttonModal}>Close</button>
         </div>
       </ReactModal> */}
-    </div>
+    </div> 
   ); 
 }
  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
