@@ -66,15 +66,25 @@ const PaginationCards = ({ recipeName, cardsPerPage,filterOption, filterHealth }
         sortedData.sort((a, b) => b.name.localeCompare(a.name));
         }
       return data.slice(startIndex, endIndex).map((card) => {
+        const plateResume = card.plate_resume.replace(/<[^>]+>/g, '');
+    
+        const diets = card.diets && card.diets.map((diet) => {
+          if (typeof diet.name === 'string') {
+            return diet.name.replace(/<[^>]+>/g, '');
+          }
+          return diet.name;
+        });
+
         return (
           <div>
             <div className={styles.cardsContainer}>
               <img src={card.image} alt={card.name} className={styles.cardImage}/>
               <h2 className={styles.cardName}>{card.name}</h2>
-              <p className={styles.cardResume}><b>Resume:</b> {card.plate_resume}</p>
+              <p className={styles.cardResume}><b>Resume:</b> {plateResume}</p>
+              <p className={styles.cardResume}><b>Healt Score:</b> {card.health_score + '%'}</p>
               <p className={styles.cardResume}>
                 <b>Diets:</b>{" "}
-                {card.diets && card.diets.map((diet) => diet.name)}
+                {diets}
               </p>
               <Link className={styles.cardLinkDetail} to={`/detail/${card.id}`}>
                 <p className={styles.cardSeeDetails}>See Details</p>
