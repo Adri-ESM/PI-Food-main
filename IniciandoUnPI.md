@@ -1,7 +1,23 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
+![adrisFoodLogo](client/src/images/adrisFoodLogo.png)
+ adrisFoodLogo
 
-### [**Deploy de mi App**]
+## [**Deploy de mi App**]
 ### (https://front-pi-food-main.onrender.com/)
+
+
+## **🧾 Organización de Proyecto en Trello**
+### https://trello.com/b/8pyc16Bu/pi-foods-henry
+
+
+### **📌 TECNOLOGÍA UTILIZADA**
+### React.js
+### Redux
+### PostgreSQL
+### Javascript
+### CSS Module
+### Api externa
+
+
 
 
 
@@ -16,7 +32,7 @@
 
 <br />
 
-## **🧾 LISTADO DE REQUISITOS INDISPENSABLES**
+
 
 <br />
 
